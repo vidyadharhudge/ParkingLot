@@ -10,7 +10,7 @@ public class ParkingLotSystemTest {
 
     @Before
     public void setup() {
-        parkingLotSystem = new ParkingLotSystem();
+        parkingLotSystem = new ParkingLotSystem(2);
         vehicle=new Object();
     }
 
@@ -46,6 +46,16 @@ public class ParkingLotSystemTest {
             parkingLotSystem.isUnPark(new Object());
         } catch (ParkingLotSystemException e) {
             Assert.assertEquals("Vehicle Is Not In Parking", e.getMessage());
+        }
+    }
+    
+    @Test
+    public void givenParkingLot_WhenFull_ShouldThrowException() {
+        try {
+            parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.isPark(new Object());
+        } catch (ParkingLotSystemException e) {
+            Assert.assertEquals("PARKING_IS_FULL", e.getMessage());
         }
     }
 
