@@ -21,4 +21,12 @@ public class ParkingLotSystemTest {
         Assert.assertTrue(vehicleIsPark);
     }
 
+    @Test
+    public void givenParkingLot_WhenVehicleIsNotParked_ThenReturnFalse() {
+        try {
+            parkingLotSystem.isPark(vehicle);
+        } catch (ParkingLotSystemException e) {
+            Assert.assertEquals("Vehicle Is Not In Parking", e.getMessage());
+        }
+    }
 }
