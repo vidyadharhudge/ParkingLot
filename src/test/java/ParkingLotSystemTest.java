@@ -31,10 +31,10 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenParkingLot_WhenVehicleIsUnparked_ThenReturnTrue()
+    public void givenParkingLot_WhenVehicleIsUnParked_ThenReturnTrue()
     {
         parkingLotSystem.parkVehicle(vehicle);
-        boolean vehicleIsUnpark=parkingLotSystem.isUnpark(vehicle);
+        boolean vehicleIsUnpark=parkingLotSystem.isUnPark(vehicle);
         Assert.assertTrue(vehicleIsUnpark);
     }
 

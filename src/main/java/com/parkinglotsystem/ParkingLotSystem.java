@@ -17,11 +17,9 @@ public class ParkingLotSystem {
         }
     }
 
-    public boolean isUnpark(Object vehicle) {
-        if (this.vehicle != null && this.vehicle.equals(vehicle)) {
+    public boolean isUnPark(Object vehicle) {
+        if (this.vehicle != null && this.vehicle.equals(vehicle))
             this.vehicle = null;
             return true;
         }
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
-    }
 }
