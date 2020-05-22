@@ -1,4 +1,5 @@
 import com.parkinglotsystem.ParkingLotSystem;
+import com.parkinglotsystem.ParkingOwner;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,7 +11,7 @@ public class ParkingLotSystemTest {
 
     @Before
     public void setup() {
-        parkingLotSystem = new ParkingLotSystem(2);
+        parkingLotSystem = new ParkingLotSystem(1);
         vehicle=new Object();
     }
 
@@ -50,13 +51,14 @@ public class ParkingLotSystemTest {
     }
     
     @Test
-    public void givenParkingLot_WhenFull_ShouldThrowException() {
+    public void givenParkingLot_WhenFull_ShouldInformOwner() {
+        ParkingOwner parkingOwner=new ParkingOwner();
         try {
+            parkingLotSystem.registerHandler(parkingOwner);
+            parkingLotSystem.parkVehicle(new Object());
             parkingLotSystem.parkVehicle(vehicle);
-            parkingLotSystem.isPark(new Object());
         } catch (ParkingLotSystemException e) {
-            Assert.assertEquals("PARKING_IS_FULL", e.getMessage());
+            Assert.assertTrue(parkingOwner.parkingFull());
         }
     }
-
 }

@@ -2,13 +2,15 @@ package com.parkinglotsystem;
 
 import com.parkinglotsystem.exception.ParkingLotSystemException;
 
-public class ParkingLotSystem<vehicle> {
+public class ParkingLotSystem {
     private int parkingLotCapacity;
     private Object vehicle;
     private int parkingLotSize=0;
+    private ParkingOwner parkingOwner;
 
     public void parkVehicle(Object vehicle) {
         if (this.parkingLotCapacity==parkingLotSize) {
+            parkingOwner.parkingIsFull();
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
         }
         this.vehicle = vehicle;
@@ -34,5 +36,10 @@ public class ParkingLotSystem<vehicle> {
             return true;
         }
         throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
+    }
+
+    public void registerHandler(ParkingOwner parkingOwner)
+    {
+        this.parkingOwner=parkingOwner;
     }
 }
