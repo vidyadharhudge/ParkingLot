@@ -1,3 +1,4 @@
+import com.parkinglotsystem.AirportSecurity;
 import com.parkinglotsystem.ParkingLotSystem;
 import com.parkinglotsystem.ParkingOwner;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
@@ -8,11 +9,15 @@ import org.junit.Test;
 public class ParkingLotSystemTest {
     ParkingLotSystem parkingLotSystem;
     Object vehicle;
+    ParkingOwner parkingOwner;
+    AirportSecurity airportSecurity;
 
     @Before
     public void setup() {
         parkingLotSystem = new ParkingLotSystem(1);
         vehicle=new Object();
+        parkingOwner=new ParkingOwner();
+        airportSecurity=new AirportSecurity();
     }
 
     @Test
@@ -51,8 +56,7 @@ public class ParkingLotSystemTest {
     }
     
     @Test
-    public void givenParkingLot_WhenFull_ShouldInformOwner() {
-        ParkingOwner parkingOwner=new ParkingOwner();
+    public void givenParkingLot_WhenFull_ThenShouldInformOwner() {
         try {
             parkingLotSystem.registerHandler(parkingOwner);
             parkingLotSystem.parkVehicle(new Object());
@@ -61,4 +65,19 @@ public class ParkingLotSystemTest {
             Assert.assertTrue(parkingOwner.parkingFull());
         }
     }
+
+    @Test
+    public void givenParkingLot_WhenFull_ThenShouldInformAirportSecurity() {
+        try {
+            parkingLotSystem.registerHandler(airportSecurity);
+            parkingLotSystem.parkVehicle(new Object());
+            parkingLotSystem.parkVehicle(vehicle);
+        } catch (ParkingLotSystemException e) {
+            Assert.assertTrue(airportSecurity.parkingFull());
+        }
+    }
+
+
+
+
 }

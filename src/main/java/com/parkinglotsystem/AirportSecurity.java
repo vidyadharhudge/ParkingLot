@@ -1,6 +1,6 @@
 package com.parkinglotsystem;
 
-public class ParkingOwner implements ParkingLotHandler
+public class AirportSecurity implements ParkingLotHandler
 {
     private boolean parkingFull;
 
@@ -13,5 +13,4 @@ public class ParkingOwner implements ParkingLotHandler
     {
         return parkingFull;
     }
-
 }
