@@ -15,9 +15,9 @@ public class ParkingLotSystemTest {
     @Before
     public void setup() {
         parkingLotSystem = new ParkingLotSystem(1);
-        vehicle=new Object();
-        parkingOwner=new ParkingOwner();
-        airportSecurity=new AirportSecurity();
+        vehicle = new Object();
+        parkingOwner = new ParkingOwner();
+        airportSecurity = new AirportSecurity();
     }
 
     @Test
@@ -38,10 +38,9 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenVehicleUnPark_WhenVehicleIsParked_ThenReturnTrue()
-    {
+    public void givenVehicleUnPark_WhenVehicleIsParked_ThenReturnTrue() {
         parkingLotSystem.parkVehicle(vehicle);
-        boolean vehicleIsUnPark=parkingLotSystem.isUnPark(vehicle);
+        boolean vehicleIsUnPark = parkingLotSystem.isUnPark(vehicle);
         Assert.assertTrue(vehicleIsUnPark);
     }
 
@@ -54,7 +53,7 @@ public class ParkingLotSystemTest {
             Assert.assertEquals("Vehicle Is Not In Parking", e.getMessage());
         }
     }
-    
+
     @Test
     public void givenParkingLot_WhenFull_ThenShouldInformOwner() {
         try {
@@ -67,17 +66,45 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenParkingLot_WhenFull_ThenShouldInformAirportSecurity() {
+    public void givenParkingLotCapcity2_ShouldBeAbleToPark2Vehicles_ThenShouldInformOwner() {
+        Object vehicle2 = new Object();
+        parkingLotSystem.setParkingLotCapacity(2);
         try {
-            parkingLotSystem.registerHandler(airportSecurity);
-            parkingLotSystem.parkVehicle(new Object());
+            parkingLotSystem.registerHandler(parkingOwner);
             parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.parkVehicle(vehicle2);
+            boolean isParked1 = parkingLotSystem.isPark(vehicle);
+            boolean isParked2 = parkingLotSystem.isPark(vehicle2);
+            Assert.assertTrue(isParked1 && isParked2);
         } catch (ParkingLotSystemException e) {
-            Assert.assertTrue(airportSecurity.parkingFull());
         }
     }
 
+    @Test
+    public void givenParkingLot_WhenFull_ThenShouldInformAirportSecurity() {
+        try {
+            parkingLotSystem.registerHandler(airportSecurity);
+            parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.parkVehicle(new Object());
+        } catch (ParkingLotSystemException e) {
+        }
+        Assert.assertTrue(airportSecurity.parkingFull());
+    }
 
-
-
+    @Test
+    public void givenParkingLot_WhenSpaceAvailableAfterFull_ThenShouldReturnTrue() {
+        Object vehicle2 = new Object();
+        parkingLotSystem.registerHandler(parkingOwner);
+        try {
+            parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.parkVehicle(vehicle2);
+        } catch (ParkingLotSystemException e) {
+            parkingLotSystem.isUnPark(vehicle);
+            Assert.assertFalse(parkingOwner.parkingFull());
+        }
+    }
 }
+
+
+
+

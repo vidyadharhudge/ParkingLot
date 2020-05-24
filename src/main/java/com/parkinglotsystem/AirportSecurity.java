@@ -2,15 +2,23 @@ package com.parkinglotsystem;
 
 public class AirportSecurity implements ParkingLotHandler
 {
-    private boolean parkingFull;
+    private boolean parkingLotCapacity;
 
     @Override
     public void parkingIsFull()
     {
-        parkingFull=true;
+        this.parkingLotCapacity=true;
     }
+
+    @Override
+    public void parkingIsEmpty()
+    {
+
+        this.parkingLotCapacity=false;
+    }
+
     public boolean parkingFull()
     {
-        return parkingFull;
+        return this.parkingLotCapacity;
     }
 }

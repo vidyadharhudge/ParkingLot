@@ -2,16 +2,25 @@ package com.parkinglotsystem;
 
 public class ParkingOwner implements ParkingLotHandler
 {
-    private boolean parkingFull;
+    private boolean parkingLotCapacity;
 
     @Override
-    public void parkingIsFull()
-    {
-        parkingFull=true;
-    }
-    public boolean parkingFull()
-    {
-        return parkingFull;
+    public void parkingIsFull() {
+        this.parkingLotCapacity=true;
     }
 
+    @Override
+    public void parkingIsEmpty() {
+        this.parkingLotCapacity=false;
+    }
+
+    public boolean parkingFull()
+    {
+        return this.parkingLotCapacity;
+    }
+
+   /* public boolean parkingEmpty()
+    {
+        return this.parkingLotCapacity;
+    }*/
 }
