@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class ParkingLotSystemTest {
     ParkingLotSystem parkingLotSystem;
     Object vehicle;
@@ -107,12 +109,18 @@ public class ParkingLotSystemTest {
     }
 
     @Test
+    public void givenParkingSlotSystem_WhenParkingCapacitySet_ShouldReturnCapacity() {
+        int parkingLotCapacity = parkingLotSystem.setParkingLotCapacity(100);
+        Assert.assertEquals(100, parkingLotCapacity);
+    }
+
+    @Test
     public void givenParkingLotSlot_WhenCarCome_ThenShouldAttenderParkCar() {
         try {
             parkingLotSystem.registerHandler(parkingOwner);
-            ParkingLotAttender parkingLotAttender=new ParkingLotAttender(vehicle);
-            ParkingLotAttender attender=parkingLotSystem.getParkingLotAttendant(parkingLotAttender);
-            Assert.assertEquals(attender,parkingLotAttender);
+            ParkingLotAttender parkingLotAttender = new ParkingLotAttender(vehicle);
+            ParkingLotAttender attender = parkingLotSystem.getParkingLotAttendant(parkingLotAttender);
+            Assert.assertEquals(attender, parkingLotAttender);
         } catch (ParkingLotSystemException e) {
         }
     }
@@ -121,49 +129,57 @@ public class ParkingLotSystemTest {
     public void givenParkingLot_WhenParkingFull_ThenAttenderShouldThrowException() {
         try {
             parkingLotSystem.registerHandler(parkingOwner);
-            ParkingLotAttender parkingLotAttender1=new ParkingLotAttender(vehicle);
-            ParkingLotAttender parkingLotAttender2=new ParkingLotAttender(new Object());
-            ParkingLotAttender parkingLotAttender3=new ParkingLotAttender(vehicle);
+            ParkingLotAttender parkingLotAttender1 = new ParkingLotAttender(vehicle);
+            ParkingLotAttender parkingLotAttender2 = new ParkingLotAttender(new Object());
+            ParkingLotAttender parkingLotAttender3 = new ParkingLotAttender(vehicle);
 
             parkingLotSystem.getParkingLotAttendant(parkingLotAttender1);
             parkingLotSystem.getParkingLotAttendant(parkingLotAttender2);
             parkingLotSystem.getParkingLotAttendant(parkingLotAttender3);
 
         } catch (ParkingLotSystemException e) {
-            Assert.assertEquals("PARKING_IS_FULL",e.getMessage());
+            Assert.assertEquals("PARKING_IS_FULL", e.getMessage());
         }
     }
 
     @Test
-    public void givenParkingLot_ShouldReturnAttendant()
-    {
+    public void givenParkingLot_ShouldReturnAttendant() {
         try {
             parkingLotSystem.registerHandler(parkingOwner);
-            ParkingLotAttender parkingLotAttender=new ParkingLotAttender(vehicle);
+            ParkingLotAttender parkingLotAttender = new ParkingLotAttender(vehicle);
             parkingLotSystem.getParkingLotAttendant(parkingLotAttender);
-            ParkingLotAttender myAttendant= parkingLotSystem.getMyVehicle(parkingLotAttender);
-            Assert.assertEquals(parkingLotAttender,myAttendant);
+            ParkingLotAttender myAttendant = parkingLotSystem.getMyVehicle(parkingLotAttender);
+            Assert.assertEquals(parkingLotAttender, myAttendant);
         } catch (ParkingLotSystemException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void givenParkingLot_WhenAttenderNotAvailable_ThenThrowException()
-    {
+    public void givenParkingLot_WhenAttenderNotAvailable_ThenThrowException() {
         try {
             parkingLotSystem.registerHandler(parkingOwner);
-            ParkingLotAttender parkingLotAttender=new ParkingLotAttender(vehicle);
+            ParkingLotAttender parkingLotAttender = new ParkingLotAttender(vehicle);
             parkingLotSystem.getParkingLotAttendant(parkingLotAttender);
-            ParkingLotAttender myAttendant= parkingLotSystem.getMyVehicle(new ParkingLotAttender(new Object()));
-            Assert.assertEquals(parkingLotAttender,myAttendant);
+            ParkingLotAttender myAttendant = parkingLotSystem.getMyVehicle(new ParkingLotAttender(new Object()));
+            Assert.assertEquals(parkingLotAttender, myAttendant);
         } catch (ParkingLotSystemException e) {
-            Assert.assertEquals("No Attendant Found",e.getMessage());
+            Assert.assertEquals("No Attendant Found", e.getMessage());
         }
     }
+
+    @Test
+    public void givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot() {
+        parkingLotSystem.setParkingLotCapacity(10);
+        parkingLotSystem.initializeParkingSlot();
+        ArrayList<Integer> slot = parkingLotSystem.getSlot();
+        parkingLotSystem.isParkVehicles(slot.get(0), new Object());
+        parkingLotSystem.isParkVehicles(slot.get(1), vehicle);
+        int slotNumber = parkingLotSystem.findVehicle(this.vehicle);
+        Assert.assertEquals(1, slotNumber);
+    }
+
 }
-
-
 
 
 

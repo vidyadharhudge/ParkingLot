@@ -1,7 +1,6 @@
 package com.parkinglotsystem;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +20,9 @@ public class ParkingLotSystem {
         this.vehicles=new ArrayList();
     }
 
-    public void setParkingLotCapacity(int parkingLotCapacity) {
+    public int setParkingLotCapacity(int parkingLotCapacity) {
         this.parkingLotCapacity=parkingLotCapacity;
+        return parkingLotCapacity;
     }
 
     public void registerHandler(ParkingLotHandler parkingOwner) {
