@@ -27,8 +27,21 @@ public class ParkingLotSystemTest {
         Assert.assertTrue(vehicleIsPark);
     }
 
-    @Test
+   /* @Test
     public void givenParkingLot_WhenVehicleIsNotParked_ThenReturnFalse() {
+           parkingLotSystem.setParkingLotCapacity(2);
+        try {
+            parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.isPark(new Object());
+        } catch (ParkingLotSystemException e) {
+            Assert.assertEquals("Vehicle Is Already Parked", e.getMessage());
+        }
+    }
+*/
+    @Test
+    public void givenParkingLot_WhenVehicleIstParked_ThenReturnTrue() {
+
         try {
             parkingLotSystem.parkVehicle(vehicle);
             parkingLotSystem.isPark(new Object());
@@ -66,7 +79,7 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenParkingLotCapcity2_ShouldBeAbleToPark2Vehicles_ThenShouldInformOwner() {
+    public void givenParkingLotCapacity2_ShouldBeAbleToPark2Vehicles_ThenShouldInformOwner() {
         Object vehicle2 = new Object();
         parkingLotSystem.setParkingLotCapacity(2);
         try {
@@ -104,6 +117,7 @@ public class ParkingLotSystemTest {
         }
     }
 }
+
 
 
 
