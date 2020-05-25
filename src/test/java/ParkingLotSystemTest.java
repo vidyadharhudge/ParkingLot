@@ -133,6 +133,7 @@ public class ParkingLotSystemTest {
             Assert.assertEquals("PARKING_IS_FULL",e.getMessage());
         }
     }
+
     @Test
     public void givenParkingLot_ShouldReturnAttendant()
     {
@@ -144,6 +145,20 @@ public class ParkingLotSystemTest {
             Assert.assertEquals(parkingLotAttender,myAttendant);
         } catch (ParkingLotSystemException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenParkingLot_WhenAttenderNotAvailable_ThenThrowException()
+    {
+        try {
+            parkingLotSystem.registerHandler(parkingOwner);
+            ParkingLotAttender parkingLotAttender=new ParkingLotAttender(vehicle);
+            parkingLotSystem.getParkingLotAttendant(parkingLotAttender);
+            ParkingLotAttender myAttendant= parkingLotSystem.getMyVehicle(new ParkingLotAttender(new Object()));
+            Assert.assertEquals(parkingLotAttender,myAttendant);
+        } catch (ParkingLotSystemException e) {
+            Assert.assertEquals("No Attendant Found",e.getMessage());
         }
     }
 }
