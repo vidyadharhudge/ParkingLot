@@ -67,4 +67,6 @@ public class ParkingLotSystem {
         parkVehicle(parkingOwner.getParkingSlot(),attendant.getVehicle());
         return attendant;
     }
+
+
 }

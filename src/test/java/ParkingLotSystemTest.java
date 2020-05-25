@@ -116,6 +116,23 @@ public class ParkingLotSystemTest {
         } catch (ParkingLotSystemException e) {
         }
     }
+
+    @Test
+    public void givenParkingLot_WhenParkingFull_ThenAttenderShouldThrowException() {
+        try {
+            parkingLotSystem.registerHandler(parkingOwner);
+            ParkingLotAttender parkingLotAttender1=new ParkingLotAttender(vehicle);
+            ParkingLotAttender parkingLotAttender2=new ParkingLotAttender(new Object());
+            ParkingLotAttender parkingLotAttender3=new ParkingLotAttender(vehicle);
+
+            parkingLotSystem.getParkingLotAttendant(parkingLotAttender1);
+            parkingLotSystem.getParkingLotAttendant(parkingLotAttender2);
+            parkingLotSystem.getParkingLotAttendant(parkingLotAttender3);
+
+        } catch (ParkingLotSystemException e) {
+            Assert.assertEquals("PARKING_IS_FULL",e.getMessage());
+        }
+    }
 }
 
 
