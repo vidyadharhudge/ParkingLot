@@ -170,16 +170,14 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot() {
-        parkingLotSystem.setParkingLotCapacity(10);
-        parkingLotSystem.initializeParkingSlot();
-        ArrayList<Integer> slot = parkingLotSystem.getSlot();
-        parkingLotSystem.isParkVehicles(slot.get(0), new Object());
-        parkingLotSystem.isParkVehicles(slot.get(1), vehicle);
-        int slotNumber = parkingLotSystem.findVehicle(this.vehicle);
-        Assert.assertEquals(1, slotNumber);
+            parkingLotSystem.setParkingLotCapacity(10);
+            parkingLotSystem.initializeParkingSlot();
+            ArrayList<Integer> slot = parkingLotSystem.getSlot();
+            parkingLotSystem.isParkVehicles(slot.get(0), new Object());
+            parkingLotSystem.isParkVehicles(slot.get(1), vehicle);
+            int slotNumber = parkingLotSystem.findVehicle(this.vehicle);
+            Assert.assertEquals(1, slotNumber);
     }
-
 }
-
 
 

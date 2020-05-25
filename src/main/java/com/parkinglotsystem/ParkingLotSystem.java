@@ -86,16 +86,15 @@ public class ParkingLotSystem {
     public void isParkVehicles(int slot,Object vehicle)
     {
         if(isPark(vehicle))
-            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
+           throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
         this.vehicles.set(slot,vehicle);
     }
 
-    public int findVehicle(Object vehicle)
-    {
-      if(this.vehicles.contains(vehicle))
-          return this.vehicles.indexOf(vehicle);
-      throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
-  }
+    public int findVehicle(Object vehicle) {
+        if (this.vehicles.contains(vehicle))
+            return this.vehicles.indexOf(vehicle);
+            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
+    }
 
   public ArrayList getSlot()
   {
