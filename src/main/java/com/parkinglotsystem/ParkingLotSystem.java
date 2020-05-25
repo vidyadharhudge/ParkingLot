@@ -1,5 +1,7 @@
 package com.parkinglotsystem;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,4 +76,36 @@ public class ParkingLotSystem {
             return attendant;
         throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_ATTENDANT, "No Attendant Found");
     }
+
+    public int initializeParkingSlot()
+    {
+        IntStream.range(0,this.parkingLotCapacity).forEach(slots->vehicles.add(null));
+        return vehicles.size();
+    }
+
+    public void isParkVehicles(int slot,Object vehicle)
+    {
+        if(isPark(vehicle))
+            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
+        this.vehicles.set(slot,vehicle);
+    }
+
+    public int findVehicle(Object vehicle)
+    {
+      if(this.vehicles.contains(vehicle))
+          return this.vehicles.indexOf(vehicle);
+      throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
+  }
+
+  public ArrayList getSlot()
+  {
+      ArrayList<Integer>slots=new ArrayList<>();
+      for(int slot=0;slot<this.parkingLotCapacity;slot++)
+      {
+          if(this.vehicles.get(slot)==null)
+              slots.add(slot);
+      }
+      return slots;
+  }
+
 }

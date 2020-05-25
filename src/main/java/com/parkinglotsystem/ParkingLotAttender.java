@@ -10,12 +10,6 @@ public class ParkingLotAttender
         this.vehicle=vehicle;
     }
 
-
-    public ParkingLotAttender(List parkingSlots,Object vehicle) {
-        this.vehicle = vehicle;
-        this.parkingSlots = parkingSlots;
-    }
-
     public Object getVehicle() {
         return vehicle;
     }
