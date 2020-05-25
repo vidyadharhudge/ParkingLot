@@ -68,5 +68,10 @@ public class ParkingLotSystem {
         return attendant;
     }
 
+     public ParkingLotAttender getMyVehicle(ParkingLotAttender attendant) {
+        if(vehicleSlotMap.containsValue(attendant.getVehicle()))
+            return attendant;
+        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_ATTENDANT, "No Attendant Found");
+    }
 
 }
