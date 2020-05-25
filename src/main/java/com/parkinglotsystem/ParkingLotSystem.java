@@ -62,18 +62,9 @@ public class ParkingLotSystem {
         throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
     }
 
-    public ParkingLotAttender getParkingLotAttendant(ParkingLotAttender attendant)
-    {
+    public ParkingLotAttender getParkingLotAttendant(ParkingLotAttender attendant) {
         ParkingOwner parkingOwner= (ParkingOwner)parkingLotHandlerList.get(0);
         parkVehicle(parkingOwner.getParkingSlot(),attendant.getVehicle());
         return attendant;
-    }
-
-    public ParkingLotAttender getMyVehicle(ParkingLotAttender attendant)
-    {
-        if(vehicleSlotMap.containsValue(attendant.getVehicle()))
-            return attendant;
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_ATTENDANT, "No Attendant Found");
-
     }
 }

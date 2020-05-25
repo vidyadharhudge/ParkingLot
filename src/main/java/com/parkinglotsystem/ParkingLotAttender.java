@@ -6,11 +6,12 @@ public class ParkingLotAttender
 {
     private Object vehicle;
     private List<ParkingOwner>parkingSlots;
+
     public ParkingLotAttender(Object vehicle)
     {
         this.vehicle=vehicle;
     }
-    public ParkingLotAttender(Object vehicle, List<ParkingOwner> parkingSlots) {
+    public ParkingLotAttender(List parkingSlots,Object vehicle) {
         this.vehicle = vehicle;
         this.parkingSlots = parkingSlots;
     }

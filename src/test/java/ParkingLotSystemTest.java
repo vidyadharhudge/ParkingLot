@@ -1,4 +1,5 @@
 import com.parkinglotsystem.AirportSecurity;
+import com.parkinglotsystem.ParkingLotAttender;
 import com.parkinglotsystem.ParkingLotSystem;
 import com.parkinglotsystem.ParkingOwner;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
@@ -27,18 +28,6 @@ public class ParkingLotSystemTest {
         Assert.assertTrue(vehicleIsPark);
     }
 
-   /* @Test
-    public void givenParkingLot_WhenVehicleIsNotParked_ThenReturnFalse() {
-           parkingLotSystem.setParkingLotCapacity(2);
-        try {
-            parkingLotSystem.parkVehicle(vehicle);
-            parkingLotSystem.parkVehicle(vehicle);
-            parkingLotSystem.isPark(new Object());
-        } catch (ParkingLotSystemException e) {
-            Assert.assertEquals("Vehicle Is Already Parked", e.getMessage());
-        }
-    }
-*/
     @Test
     public void givenParkingLot_WhenVehicleIstParked_ThenReturnTrue() {
 
@@ -114,6 +103,17 @@ public class ParkingLotSystemTest {
         } catch (ParkingLotSystemException e) {
             parkingLotSystem.isUnPark(vehicle);
             Assert.assertFalse(parkingOwner.parkingFull());
+        }
+    }
+
+    @Test
+    public void givenParkingLotSlot_WhenCarCome_ThenShouldAttenderParkCar() {
+        try {
+            parkingLotSystem.registerHandler(parkingOwner);
+            ParkingLotAttender parkingLotAttender=new ParkingLotAttender(vehicle);
+            ParkingLotAttender attender=parkingLotSystem.getParkingLotAttendant(parkingLotAttender);
+            Assert.assertEquals(attender,parkingLotAttender);
+        } catch (ParkingLotSystemException e) {
         }
     }
 }
