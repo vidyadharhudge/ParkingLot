@@ -218,6 +218,17 @@ public class ParkingLotSystemTest {
         Assert.assertTrue(isTimeSet);
     }
 
+
+    @Test
+    public void givenParkingLotSystem_WhenAddLot_ThenReturnTrue() {
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+        boolean isLotAdded=parkingLotSystem.isLotAdd(parkingLot);
+        Assert.assertTrue(isLotAdded);
+    }
+
+
     @Test
     public void givenParkingLotSystem_WhenLotsAdded_ThenReturnTrue() {
         parkingLot.setParkingLotCapacity(10);
@@ -229,6 +240,7 @@ public class ParkingLotSystemTest {
         boolean isLotAdded=parkingLotSystem.isLotAdd(parkingLot1);
         Assert.assertTrue(isLotAdded);
     }
+
 
 
 }
