@@ -1,127 +1,42 @@
 package com.parkinglotsystem;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.IntStream;
+import java.util.*;
 
-public class ParkingLotSystem
-{
-    private int parkingLotCapacity;
-    private List<ParkingLotHandler> parkingLotHandlerList;
-    private List<ParkingTimeSlot>vehicles;
-    Map<Integer,Object> vehicleSlotMap=new HashMap();
+public class ParkingLotSystem {
+    private int capacity;
+    private List<ParkingLot>parkingLotList;
 
-    public ParkingLotSystem(int parkingLotCapacity) {
-        this.parkingLotCapacity=parkingLotCapacity;
-        parkingLotHandlerList=new ArrayList();
-        this.vehicles=new ArrayList();
+    public ParkingLotSystem(int capacity) {
+        this.capacity=capacity;
+        this.parkingLotList=new ArrayList<>();
     }
 
-    public int setParkingLotCapacity(int parkingLotCapacity) {
-        this.parkingLotCapacity=parkingLotCapacity;
-        return parkingLotCapacity;
+    public void addLots(ParkingLot parkingLot) {
+        this.parkingLotList.add(parkingLot);
     }
 
-    public void registerHandler(ParkingLotHandler parkingOwner) {
-        this.parkingLotHandlerList.add(parkingOwner);
+    public boolean isLotAdd(ParkingLot parkingLot) {
+        if (this.parkingLotList.contains(parkingLot))return true;
+        return false;
     }
 
     public void parkVehicle(Object vehicle) {
-        ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
-        if (!this.vehicles.contains(null)) {
-            for(ParkingLotHandler parkingOwner:parkingLotHandlerList)
-                parkingOwner.parkingIsFull();
-            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
-        }
-        if (isPark(vehicle))
-            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_ALREADY_PARKED, "Vehicle Is Already Parked");
-        int slot=getParkingSlot();
-        this.vehicles.set(slot,parkingTimeSlot);
+        List<ParkingLot>parkingLot=this.parkingLotList;
+        Collections.sort(parkingLot,Comparator.comparing(list->list.getSlot().size(),Comparator.reverseOrder()));
+        ParkingLot lot=parkingLot.get(0);
+        lot.isPark(vehicle);
     }
 
     public boolean isPark(Object vehicle) {
-        ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
-        if (this.vehicles.contains(parkingTimeSlot))
+        if (this.parkingLotList.get(0).isPark(vehicle))
             return true;
         return false;
     }
 
     public boolean isUnPark(Object vehicle) {
-        ParkingTimeSlot parkingTimeSlot = new ParkingTimeSlot(vehicle);
-        for (int slotNumber = 0; slotNumber < this.vehicles.size(); slotNumber++)
-            if (this.vehicles.contains(parkingTimeSlot)) {
-                this.vehicles.set(slotNumber, null);
-                for (ParkingLotHandler parkingOwner : parkingLotHandlerList) {
-                    parkingOwner.parkingIsEmpty();
-                    return true;
-                }
-            }
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
-    }
-
-
-    public void parkVehicle(int slot,Object vehicle) {
-        if (this.parkingLotCapacity==this.vehicleSlotMap.size()) {
-            for(ParkingLotHandler parkingOwner:parkingLotHandlerList)
-                parkingOwner.parkingIsFull();
-            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
+        for(int lot=0; lot<this.parkingLotList.size();lot++) {
+            if(this.parkingLotList.get(lot).isUnPark(vehicle))return true;
         }
-        vehicleSlotMap.put(slot,vehicle);
-    }
-
-    public int initializeParkingSlot() {
-        IntStream.range(0,this.parkingLotCapacity).forEach(slots->vehicles.add(null));
-        return vehicles.size();
-    }
-
-    public int getParkingSlot() {
-        ArrayList<Integer> slotList = getSlot();
-        for (int slot = 0; slot < slotList.size(); slot++) {
-            if (slotList.get(0) == (slot))
-                return slot;
-        }
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
-    }
-
-    public ParkingLotAttender getParkingLotAttendant(ParkingLotAttender attendant) {
-        ParkingOwner parkingOwner= (ParkingOwner)parkingLotHandlerList.get(0);
-        parkVehicle(parkingOwner.getParkingSlot(),attendant.getVehicle());
-        return attendant;
-    }
-
-    public ParkingLotAttender getMyVehicle(ParkingLotAttender attendant) {
-        if(vehicleSlotMap.containsValue(attendant.getVehicle()))
-            return attendant;
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_ATTENDANT, "No Attendant Found");
-    }
-
-
-    public int findVehicle(Object vehicle) {
-        ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
-        if (this.vehicles.contains(parkingTimeSlot))
-            return this.vehicles.indexOf(parkingTimeSlot);
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
-    }
-
-    public ArrayList getSlot()
-    {
-        ArrayList slots=new ArrayList();
-        for(int slot=0;slot<this.parkingLotCapacity;slot++)
-        {
-            if(this.vehicles.get(slot)==null)
-                slots.add(slot);
-        }
-        return slots;
-    }
-
-    public boolean setTime(Object vehicle) {
-        ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
-        for(int i=0;i<this.vehicles.size();i++) {
-            if(this.vehicles.get(i).time!=null && this.vehicles.contains(parkingTimeSlot))
-                return true;
-            }
-        return false;
+        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND,"Vehicle Not Found");
     }
 }
