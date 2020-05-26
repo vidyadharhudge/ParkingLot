@@ -24,7 +24,7 @@ public class ParkingLotSystem {
         List<ParkingLot>parkingLot=this.parkingLotList;
         Collections.sort(parkingLot,Comparator.comparing(list->list.getSlot().size(),Comparator.reverseOrder()));
         ParkingLot lot=parkingLot.get(0);
-        lot.isPark(vehicle);
+        lot.parkVehicle(vehicle);
     }
 
     public boolean isPark(Object vehicle) {
@@ -37,6 +37,6 @@ public class ParkingLotSystem {
         for(int lot=0; lot<this.parkingLotList.size();lot++) {
             if(this.parkingLotList.get(lot).isUnPark(vehicle))return true;
         }
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND,"Vehicle Not Found");
+        return false;
     }
 }
