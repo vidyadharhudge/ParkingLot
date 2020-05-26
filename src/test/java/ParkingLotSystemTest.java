@@ -238,7 +238,7 @@ public class ParkingLotSystemTest {
         boolean isLotAdded=parkingLotSystem.isLotAdd(parkingLot1);
         Assert.assertTrue(isLotAdded);
     }
-    
+
    @Test
     public void givenParkingLot_WhenVehicleParkOnLotPosition_ThenReturnTrue() {
         ParkingLot parkingLot1 = new ParkingLot(10);
@@ -247,13 +247,43 @@ public class ParkingLotSystemTest {
         parkingLot1.initializeParkingSlot();
         try {
             parkingLotSystem.parkVehicle(vehicle);
-            boolean isvehiclePark = parkingLotSystem.isPark(vehicle);
-            Assert.assertTrue(isvehiclePark);
+            boolean isVehiclePark = parkingLotSystem.isPark(vehicle);
+            Assert.assertTrue(isVehiclePark);
         } catch (ParkingLotSystemException e) {
             e.printStackTrace();
         }
     }
-}
+
+    @Test
+    public void givenParkingLotSystem_WhenVehiclePark_ThenShouldParkVehicleEvenly() {
+
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        parkingLot1.setParkingLotCapacity(10);
+        parkingLot1.initializeParkingSlot();
+        Object vehicle1=new Object();
+        Object vehicle2=new Object();
+        Object vehicle3=new Object();
+
+        parkingLotSystem.addLots(parkingLot1);
+        parkingLotSystem.parkVehicle(vehicle);
+
+        boolean isParked1=parkingLotSystem.isPark(vehicle);
+        parkingLotSystem.parkVehicle(vehicle1);
+
+        boolean isParked2=parkingLotSystem.isPark(vehicle1);
+        parkingLotSystem.parkVehicle(vehicle2);
+
+        boolean isParked3=parkingLotSystem.isPark(vehicle2);
+        parkingLotSystem.parkVehicle(vehicle3);
+
+        boolean isParked4=parkingLotSystem.isPark(vehicle3);
+        Assert.assertTrue(isParked1 && isParked2 && isParked3 && isParked4);
+        }
+    }
+
 
 
 
