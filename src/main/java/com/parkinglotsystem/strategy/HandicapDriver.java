@@ -1,11 +1,12 @@
-package com.parkinglotsystem;
+package com.parkinglotsystem.strategy;
+
+import com.parkinglotsystem.ParkingLot;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public enum HandicapDriver implements ParkingStrategy {
-   HANDICAP_DRIVER ;
+public class HandicapDriver implements ParkingStrategy{
 
     @Override
     public ParkingLot getParkingLot(List<ParkingLot> parkingLotList) {

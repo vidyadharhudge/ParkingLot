@@ -1,7 +1,6 @@
-package com.parkinglotsystem;
+package com.parkinglotsystem.observer;
 
-public class AirportSecurity implements ParkingLotHandler
-{
+public class AirportSecurity implements ParkingLotHandler {
     private boolean parkingLotCapacity;
 
     @Override

@@ -1,6 +1,8 @@
 package com.parkinglotsystem;
 
 import com.parkinglotsystem.exception.ParkingLotSystemException;
+import com.parkinglotsystem.observer.ParkingLotHandler;
+import com.parkinglotsystem.observer.ParkingOwner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +12,7 @@ import java.util.stream.IntStream;
 
 public class ParkingLot
 {
+    private int vehicleCount;
     private int parkingLotCapacity;
     private List<ParkingLotHandler> parkingLotHandlerList;
     private List<ParkingTimeSlot>vehicles;
@@ -30,7 +33,7 @@ public class ParkingLot
         this.parkingLotHandlerList.add(parkingOwner);
     }
 
-    public void parkVehicle(ParkingStrategy driverType,Object vehicle) {
+    public void parkVehicle(Enum driverType,Object vehicle) {
         ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(driverType,vehicle);
         if (!this.vehicles.contains(null)) {
             for(ParkingLotHandler parkingOwner:parkingLotHandlerList)
@@ -41,6 +44,7 @@ public class ParkingLot
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
         int slot=getParkingSlot();
         this.vehicles.set(slot,parkingTimeSlot);
+        vehicleCount++;
     }
 
     public boolean isPark(Object vehicle) {
@@ -55,6 +59,7 @@ public class ParkingLot
         for (int slotNumber = 0; slotNumber < this.vehicles.size(); slotNumber++)
             if (this.vehicles.contains(parkingTimeSlot)) {
                 this.vehicles.set(slotNumber, null);
+                vehicleCount--;
                 for (ParkingLotHandler parkingOwner : parkingLotHandlerList) {
                     parkingOwner.parkingIsEmpty();
                     return true;
@@ -76,6 +81,10 @@ public class ParkingLot
     public int initializeParkingSlot() {
         IntStream.range(0,this.parkingLotCapacity).forEach(slots->vehicles.add(null));
         return vehicles.size();
+    }
+
+    public int getVehicleCount() {
+        return vehicleCount++;
     }
 
     public int getParkingSlot() {
@@ -104,7 +113,7 @@ public class ParkingLot
         ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
         if (this.vehicles.contains(parkingTimeSlot))
             return this.vehicles.indexOf(parkingTimeSlot);
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
+      throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
     }
 
     public ArrayList getSlot() {

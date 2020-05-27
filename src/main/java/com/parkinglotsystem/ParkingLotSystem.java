@@ -1,5 +1,8 @@
 package com.parkinglotsystem;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
+import com.parkinglotsystem.strategy.ParkingFactory;
+import com.parkinglotsystem.strategy.ParkingStrategy;
+
 import java.util.*;
 
 public class ParkingLotSystem {
@@ -20,14 +23,16 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public void parkVehicle(ParkingStrategy driverType,Object vehicle) {
-      ParkingLot lot=driverType.getParkingLot(this.parkingLotList);
+    public void parkVehicle(Enum driverType,Object vehicle) {
+        ParkingStrategy parkingStrategy= ParkingFactory.getParkingStrategy(driverType);
+      ParkingLot lot=parkingStrategy.getParkingLot(this.parkingLotList);
         lot.parkVehicle(driverType,vehicle);
     }
 
     public boolean isPark(Object vehicle) {
-        if (this.parkingLotList.get(0).isPark(vehicle))
-            return true;
+        for(int i=0;i<this.parkingLotList.size();i++) {
+            if(this.parkingLotList.get(i).isPark(vehicle))return true;
+        }
         return false;
     }
 

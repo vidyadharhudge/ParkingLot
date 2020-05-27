@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class ParkingTimeSlot {
 
-    private  ParkingStrategy driverType;
-    protected   LocalDateTime time;
-    protected  Object vehicle;
+    private Enum driverType;
+    protected  LocalDateTime time;
+    protected Object vehicle;
 
-    public ParkingTimeSlot(ParkingStrategy driverType,Object vehicle) {
+    public ParkingTimeSlot(Enum driverType,Object vehicle) {
     this.vehicle=vehicle;
     this.time= LocalDateTime.now();
     this.driverType=driverType;
@@ -17,6 +17,8 @@ public class ParkingTimeSlot {
     public ParkingTimeSlot(Object vehicle) {
     this.vehicle=vehicle;
     }
+
+
 
     @Override
     public boolean equals(Object obj) {

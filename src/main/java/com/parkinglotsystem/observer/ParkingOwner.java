@@ -1,7 +1,7 @@
-package com.parkinglotsystem;
+package com.parkinglotsystem.observer;
 
-public class ParkingOwner implements ParkingLotHandler
-{
+public class ParkingOwner implements ParkingLotHandler {
+
     private boolean parkingLotCapacity;
     private int count=0;
 
