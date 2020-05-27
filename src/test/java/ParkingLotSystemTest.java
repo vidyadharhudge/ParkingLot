@@ -368,6 +368,38 @@ public class ParkingLotSystemTest {
         Assert.assertTrue(true);
 
     }
+
+    @Test
+    public void givenParkingLot_WhenLargeVehicleParked_ThenShouldReturnTrue() {
+
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        parkingLot1.setParkingLotCapacity(10);
+        parkingLot1.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot1);
+
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        parkingLot2.setParkingLotCapacity(10);
+        parkingLot2.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot2);
+
+        Object vehicle1 = new Object();
+        Object vehicle2 = new Object();
+        Object vehicle3 = new Object();
+        Object vehicle4=new Object();
+        Object vehicle5=new Object();
+
+        parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1);
+        parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle2);
+        parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3);
+        parkingLotSystem.parkVehicle(VehicleType.LARGE_VEHICLE,vehicle4);
+        parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5);
+        boolean isVehiclePark=parkingLotSystem.isPark(vehicle4);
+        Assert.assertTrue(isVehiclePark);
+    }
 }
 
 
