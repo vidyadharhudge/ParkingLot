@@ -40,11 +40,11 @@ public class ParkingLotSystemTest {
     public void givenParkingLot_WhenParkedVehicleIsUnParked_ThenReturnTrue() {
         parkingLot.initializeParkingSlot();
 
-        parkingLot.parkVehicle(NormalDriver.NORMAL_DRIVER, vehicle);
-        boolean vehicleIsUnPark = parkingLot.isUnPark(vehicle);
-        Assert.assertTrue(vehicleIsUnPark);
+            parkingLot.parkVehicle(NormalDriver.NORMAL_DRIVER, vehicle);
+            boolean vehicleIsUnPark = parkingLot.isUnPark(vehicle);
+            Assert.assertTrue(vehicleIsUnPark);
 
-    }
+        }
 
 
     @Test
@@ -316,7 +316,22 @@ public class ParkingLotSystemTest {
         } catch (ParkingLotSystemException e) {
         }
     }
+
+    @Test
+    public void givenDriverTypeIsHandicap_ShouldReturnNearestLot() {
+        ParkingStrategy parkingStrategy = HandicapDriver.HANDICAP_DRIVER;
+        List<ParkingLot> lotList = new ArrayList<>();
+        ParkingLot lot = new ParkingLot(1);
+        lot.setParkingLotCapacity(10);
+        lot.initializeParkingSlot();
+        lotList.add(lot);
+        ParkingLot parkingLot = null;
+        parkingLot = parkingStrategy.getParkingLot(lotList);
+        Assert.assertEquals(lot, parkingLot);
+    }
 }
+
+
 
 
 
