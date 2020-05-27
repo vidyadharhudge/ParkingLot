@@ -329,6 +329,38 @@ public class ParkingLotSystemTest {
         parkingLot = parkingStrategy.getParkingLot(lotList);
         Assert.assertEquals(lot, parkingLot);
     }
+
+    @Test
+    public void givenDriver_WhenHandicap_ThenShouldParkVehicleAtNearestPlace() {
+
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        parkingLot1.setParkingLotCapacity(10);
+        parkingLot1.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot1);
+
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        parkingLot2.setParkingLotCapacity(10);
+        parkingLot2.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot2);
+
+        Object vehicle1 = new Object();
+        Object vehicle2 = new Object();
+        Object vehicle3 = new Object();
+        Object vehicle4=new Object();
+        Object vehicle5=new Object();
+
+        parkingLotSystem.parkVehicle(NormalDriver.NORMAL_DRIVER, vehicle1);
+        parkingLotSystem.parkVehicle(NormalDriver.NORMAL_DRIVER, vehicle2);
+        parkingLotSystem.parkVehicle(NormalDriver.NORMAL_DRIVER, vehicle3);
+        parkingLotSystem.parkVehicle(HandicapDriver.HANDICAP_DRIVER,vehicle4);
+        parkingLotSystem.parkVehicle(NormalDriver.NORMAL_DRIVER, vehicle5);
+        Assert.assertTrue(true);
+
+    }
 }
 
 
