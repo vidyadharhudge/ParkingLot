@@ -1,4 +1,6 @@
 package com.parkinglotsystem;
+import com.parkinglotsystem.observer.Vehicle;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -6,15 +8,15 @@ public class ParkingTimeSlot {
 
     private Enum driverType;
     protected  LocalDateTime time;
-    protected Object vehicle;
+    protected Vehicle vehicle;
 
-    public ParkingTimeSlot(Enum driverType,Object vehicle) {
+    public ParkingTimeSlot(Enum driverType, Vehicle vehicle) {
     this.vehicle=vehicle;
     this.time= LocalDateTime.now();
     this.driverType=driverType;
     }
 
-    public ParkingTimeSlot(Object vehicle) {
+    public ParkingTimeSlot(Vehicle vehicle) {
     this.vehicle=vehicle;
     }
 

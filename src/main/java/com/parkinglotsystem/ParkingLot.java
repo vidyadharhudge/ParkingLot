@@ -3,6 +3,7 @@ package com.parkinglotsystem;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
 import com.parkinglotsystem.observer.ParkingLotHandler;
 import com.parkinglotsystem.observer.ParkingOwner;
+import com.parkinglotsystem.observer.Vehicle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +17,12 @@ public class ParkingLot
     private int parkingLotCapacity;
     private List<ParkingLotHandler> parkingLotHandlerList;
     private List<ParkingTimeSlot>vehicles;
-    Map<Integer,Object> vehicleSlotMap=new HashMap<>();
+    Map<Integer, Vehicle> vehicleSlotMap=new HashMap<>();
 
+    public ParkingLot() {
+        parkingLotHandlerList=new ArrayList();
+        this.vehicles=new ArrayList();
+    }
     public ParkingLot(int parkingLotCapacity) {
         this.parkingLotCapacity=parkingLotCapacity;
         parkingLotHandlerList=new ArrayList();
@@ -33,7 +38,7 @@ public class ParkingLot
         this.parkingLotHandlerList.add(parkingOwner);
     }
 
-    public void parkVehicle(Enum driverType,Object vehicle) {
+    public void parkVehicle(Enum driverType,Vehicle vehicle) {
         ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(driverType,vehicle);
         if (!this.vehicles.contains(null)) {
             for(ParkingLotHandler parkingOwner:parkingLotHandlerList)
@@ -47,14 +52,14 @@ public class ParkingLot
         vehicleCount++;
     }
 
-    public boolean isPark(Object vehicle) {
+    public boolean isPark(Vehicle vehicle) {
         ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
         if (this.vehicles.contains(parkingTimeSlot))
             return true;
         return false;
     }
 
-    public boolean isUnPark(Object vehicle) {
+    public boolean isUnPark(Vehicle vehicle) {
         ParkingTimeSlot parkingTimeSlot = new ParkingTimeSlot(vehicle);
         for (int slotNumber = 0; slotNumber < this.vehicles.size(); slotNumber++)
             if (this.vehicles.contains(parkingTimeSlot)) {
@@ -69,7 +74,7 @@ public class ParkingLot
     }
 
 
-    public void parkVehicle(int slot,Object vehicle) {
+    public void parkVehicle(int slot,Vehicle vehicle) {
         if (this.parkingLotCapacity==this.vehicleSlotMap.size()) {
             for(ParkingLotHandler parkingOwner:parkingLotHandlerList)
                 parkingOwner.parkingIsFull();
@@ -98,7 +103,7 @@ public class ParkingLot
 
     public ParkingLotAttender getParkingLotAttendant(ParkingLotAttender attendant) {
         ParkingOwner parkingOwner= (ParkingOwner)parkingLotHandlerList.get(0);
-        parkVehicle(parkingOwner.getParkingSlot(),attendant.getVehicle());
+        parkVehicle(parkingOwner.getParkingSlot(), (Vehicle) attendant.getVehicle());
         return attendant;
     }
 
@@ -109,7 +114,7 @@ public class ParkingLot
     }
 
 
-    public int findVehicle(Object vehicle) {
+    public int findVehicle(Vehicle vehicle) {
         ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
         if (this.vehicles.contains(parkingTimeSlot))
             return this.vehicles.indexOf(parkingTimeSlot);
@@ -125,12 +130,22 @@ public class ParkingLot
         return slots;
     }
 
-    public boolean setTime(Object vehicle) {
+    public boolean setTime(Vehicle vehicle) {
         ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
         for(int i=0;i<this.vehicles.size();i++) {
             if(this.vehicles.get(i).time!=null && this.vehicles.contains(parkingTimeSlot))
                 return true;
         }
         return false;
+    }
+
+    public ArrayList<Integer> findLocation(String colour) {
+        ArrayList<Integer>colourList=new ArrayList<>();
+        for(int i=0;i<this.vehicles.size();i++) {
+            if(this.vehicles.get(i)!=null)
+                if(this.vehicles.get(i).vehicle.getColour().equals(colour))
+                    colourList.add(i);
+        }
+        return colourList;
     }
 }

@@ -1,12 +1,14 @@
 package com.parkinglotsystem;
+import com.parkinglotsystem.observer.Vehicle;
+
 import java.util.List;
 
 public class ParkingLotAttender
 {
-    private Object vehicle;
-    private List<ParkingOwner>parkingSlots;
+    private Vehicle vehicle;
 
-    public ParkingLotAttender(Object vehicle) {
+
+    public ParkingLotAttender(Vehicle vehicle) {
         this.vehicle=vehicle;
     }
 
