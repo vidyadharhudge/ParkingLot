@@ -13,7 +13,7 @@ public class ParkingLot
     private int parkingLotCapacity;
     private List<ParkingLotHandler> parkingLotHandlerList;
     private List<ParkingTimeSlot>vehicles;
-    Map<Integer,Object> vehicleSlotMap=new HashMap();
+    Map<Integer,Object> vehicleSlotMap=new HashMap<>();
 
     public ParkingLot(int parkingLotCapacity) {
         this.parkingLotCapacity=parkingLotCapacity;
@@ -30,15 +30,15 @@ public class ParkingLot
         this.parkingLotHandlerList.add(parkingOwner);
     }
 
-    public void parkVehicle(Object vehicle) {
-        ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(vehicle);
+    public void parkVehicle(ParkingStrategy driverType,Object vehicle) {
+        ParkingTimeSlot parkingTimeSlot=new ParkingTimeSlot(driverType,vehicle);
         if (!this.vehicles.contains(null)) {
             for(ParkingLotHandler parkingOwner:parkingLotHandlerList)
                 parkingOwner.parkingIsFull();
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
         }
         if (isPark(vehicle))
-            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_ALREADY_PARKED, "Vehicle Is Already Parked");
+            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
         int slot=getParkingSlot();
         this.vehicles.set(slot,parkingTimeSlot);
     }
@@ -60,7 +60,7 @@ public class ParkingLot
                     return true;
                 }
             }
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
+       return false;
     }
 
 
@@ -84,7 +84,7 @@ public class ParkingLot
             if (slotList.get(0) == (slot))
                 return slot;
         }
-        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
+        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
     }
 
     public ParkingLotAttender getParkingLotAttendant(ParkingLotAttender attendant) {
@@ -107,11 +107,9 @@ public class ParkingLot
         throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND, "Vehicle Is Not In Parking");
     }
 
-    public ArrayList getSlot()
-    {
+    public ArrayList getSlot() {
         ArrayList slots=new ArrayList();
-        for(int slot=0;slot<this.parkingLotCapacity;slot++)
-        {
+        for(int slot=0;slot<this.parkingLotCapacity;slot++) {
             if(this.vehicles.get(slot)==null)
                 slots.add(slot);
         }

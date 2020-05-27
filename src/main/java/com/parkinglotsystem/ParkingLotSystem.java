@@ -20,11 +20,9 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public void parkVehicle(Object vehicle) {
-        List<ParkingLot>parkingLot=this.parkingLotList;
-        Collections.sort(parkingLot,Comparator.comparing(list->list.getSlot().size(),Comparator.reverseOrder()));
-        ParkingLot lot=parkingLot.get(0);
-        lot.parkVehicle(vehicle);
+    public void parkVehicle(ParkingStrategy driverType,Object vehicle) {
+      ParkingLot lot=driverType.getParkingLot(this.parkingLotList);
+        lot.parkVehicle(driverType,vehicle);
     }
 
     public boolean isPark(Object vehicle) {
@@ -37,6 +35,6 @@ public class ParkingLotSystem {
         for(int lot=0; lot<this.parkingLotList.size();lot++) {
             if(this.parkingLotList.get(lot).isUnPark(vehicle))return true;
         }
-        return false;
+        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND,"Vehicle Is Not In Parking");
     }
 }
