@@ -498,54 +498,9 @@ public class ParkingLotSystemTest {
         }
 
     }
-        @Test
-        public void givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBlueToyotoCar () {
-
-            parkingLot.setParkingLotCapacity(10);
-            parkingLot.initializeParkingSlot();
-            parkingLotSystem.addLots(parkingLot);
-
-            ParkingLot parkingLot1 = new ParkingLot();
-            parkingLot1.setParkingLotCapacity(10);
-            parkingLot1.initializeParkingSlot();
-            parkingLotSystem.addLots(parkingLot1);
-
-            ParkingLot parkingLot2 = new ParkingLot();
-            parkingLot2.setParkingLotCapacity(10);
-            parkingLot2.initializeParkingSlot();
-            parkingLotSystem.addLots(parkingLot2);
-
-            Vehicle vehicle1 = new Vehicle("black", "BMW", "MH-12-1176");
-            Vehicle vehicle2 = new Vehicle("blue", "toyota", "MH-12-1276");
-            Vehicle vehicle3 = new Vehicle("red", "BMW", "MH-12-1376");
-            Vehicle vehicle4 = new Vehicle("white", "toyota", "MH-12-1476");
-            Vehicle vehicle5 = new Vehicle("grey", "toyota", "MH-12-1576");
-
-            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
-            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle2, "XYZ");
-            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
-            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle4, "PQR");
-            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5, "ABC");
-            List<List<String>> expectedCar = parkingLotSystem.findByModelAndColour("blue", "toyota");
-            List result = new ArrayList();
-            result.add("XYZ1MH-12-1276");
-            Assert.assertEquals(result, expectedCar.get(0));
-        }
 
     @Test
-    public void givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBMWCar() {
-
-
-
-        parkingLot.setParkingLotCapacity(10);
-        parkingLot.initializeParkingSlot();
-        parkingLotSystem.addLots(parkingLot);
-
-
-        parkingLot.setParkingLotCapacity(10);
-        parkingLot.initializeParkingSlot();
-        parkingLotSystem.addLots(parkingLot);
-
+    public void givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBlueToyotoCar() {
 
         parkingLot.setParkingLotCapacity(10);
         parkingLot.initializeParkingSlot();
@@ -555,6 +510,49 @@ public class ParkingLotSystemTest {
         parkingLot1.setParkingLotCapacity(10);
         parkingLot1.initializeParkingSlot();
         parkingLotSystem.addLots(parkingLot1);
+
+        ParkingLot parkingLot2 = new ParkingLot();
+        parkingLot2.setParkingLotCapacity(10);
+        parkingLot2.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot2);
+
+        Vehicle vehicle1 = new Vehicle("black", "BMW", "MH-12-1176");
+        Vehicle vehicle2 = new Vehicle("blue", "toyota", "MH-12-1276");
+        Vehicle vehicle3 = new Vehicle("red", "BMW", "MH-12-1376");
+        Vehicle vehicle4 = new Vehicle("white", "toyota", "MH-12-1476");
+        Vehicle vehicle5 = new Vehicle("grey", "toyota", "MH-12-1576");
+
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle2, "XYZ");
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle4, "PQR");
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5, "ABC");
+        List<List<String>> expectedCar = parkingLotSystem.findByModelAndColour("blue", "toyota");
+        List result = new ArrayList();
+        result.add("XYZ 1 MH-12-1276");
+        Assert.assertEquals(result, expectedCar.get(0));
+    }
+
+    @Test
+    public void givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBMWCar() {
+
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+
+        ParkingLot parkingLot1 = new ParkingLot();
+        parkingLot1.setParkingLotCapacity(10);
+        parkingLot1.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot1);
+
         ParkingLot parkingLot2 = new ParkingLot();
         parkingLot2.setParkingLotCapacity(10);
         parkingLot2.initializeParkingSlot();
@@ -575,6 +573,32 @@ public class ParkingLotSystemTest {
         result.add(0);
         result.add(2);
         Assert.assertEquals(result, expectedList.get(0));
+    }
+
+    @Test
+    public void givenParkingLotSystem_ShouldReturnParkedVechicleFromLast30Min() {
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        Vehicle vehicle1 = new Vehicle("black", "BMW", "MH-12-1176");
+        Vehicle vehicle2 = new Vehicle("blue", "toyota", "MH-12-1276");
+        Vehicle vehicle3 = new Vehicle("red", "BMW", "MH-12-1376");
+        Vehicle vehicle4 = new Vehicle("white", "toyota", "MH-12-1476");
+        Vehicle vehicle5 = new Vehicle("grey", "toyota", "MH-12-1576");
+
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle2, "XYZ");
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle4, "PQR");
+        parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5, "ABC");
+
+        List<String> vehicleList = parkingLot.findParkedVehicleLast30Min();
+        List expectedResult = new ArrayList();
+        expectedResult.add("0 BMW MH-12-1176");
+        expectedResult.add("1 toyota MH-12-1276");
+        expectedResult.add("2 BMW MH-12-1376");
+        expectedResult.add("3 toyota MH-12-1476");
+        expectedResult.add("4 toyota MH-12-1576");
+        Assert.assertEquals(expectedResult, vehicleList);
     }
 }
 
