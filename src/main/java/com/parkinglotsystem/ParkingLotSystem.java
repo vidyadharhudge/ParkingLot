@@ -5,6 +5,7 @@ import com.parkinglotsystem.strategy.ParkingFactory;
 import com.parkinglotsystem.strategy.ParkingStrategy;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ParkingLotSystem {
     private int capacity;
@@ -24,10 +25,10 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public void parkVehicle(Enum driverType, Vehicle vehicle) {
+    public void parkVehicle(Enum driverType, Vehicle vehicle,String attendant) {
         ParkingStrategy parkingStrategy= ParkingFactory.getParkingStrategy(driverType);
       ParkingLot lot=parkingStrategy.getParkingLot(this.parkingLotList);
-        lot.parkVehicle(driverType,vehicle);
+        lot.parkVehicle(driverType,vehicle,attendant);
     }
 
     public boolean isPark(Vehicle vehicle) {
@@ -44,13 +45,19 @@ public class ParkingLotSystem {
         throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.VEHICLE_NOT_FOUND,"Vehicle Is Not In Parking");
     }
 
-    public List findVehicleByColour(String colour) {
-        List<ArrayList>parkingLot=new ArrayList<>();
-        for(ParkingLot lot:this.parkingLotList)
-        {
-            ArrayList<Integer>location=lot.findLocation(colour);
-            parkingLot.add(location);
+    public List<List<Integer>> findVehicleByColour(String colour) {
+        List<List<Integer>>list=this.parkingLotList.stream()
+                .map(lot->lot.findByColour(colour))
+                .collect(Collectors.toList());
+        return list;
+    }
+
+    public List<List<String>> findByModelAndColour(String colour, String modelName) {
+        List<List<String>>arrayList=new ArrayList<>();
+        for(ParkingLot list:this.parkingLotList){
+            List<String>lot=list.findByModelAndColour(colour,modelName);
+            arrayList.add(lot);
         }
-        return parkingLot;
+        return arrayList;
     }
 }

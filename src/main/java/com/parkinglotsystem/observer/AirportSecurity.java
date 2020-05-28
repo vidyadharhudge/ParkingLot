@@ -17,4 +17,7 @@ public class AirportSecurity implements ParkingLotHandler {
     public boolean parkingFull() {
         return this.parkingLotCapacity;
     }
+    public boolean parkingEmpty() {
+        return this.parkingLotCapacity;
+    }
 }

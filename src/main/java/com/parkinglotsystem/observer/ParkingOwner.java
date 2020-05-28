@@ -19,6 +19,7 @@ public class ParkingOwner implements ParkingLotHandler {
         return this.parkingLotCapacity;
     }
 
+
     public  int getParkingSlot() {
         return count++;
     }
