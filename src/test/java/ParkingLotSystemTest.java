@@ -535,6 +535,12 @@ public class ParkingLotSystemTest {
     @Test
     public void givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBMWCar() {
 
+
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+
+
         parkingLot.setParkingLotCapacity(10);
         parkingLot.initializeParkingSlot();
         parkingLotSystem.addLots(parkingLot);
@@ -548,7 +554,6 @@ public class ParkingLotSystemTest {
         parkingLot2.setParkingLotCapacity(10);
         parkingLot2.initializeParkingSlot();
         parkingLotSystem.addLots(parkingLot2);
-
         Vehicle vehicle1 = new Vehicle("black", "BMW", "MH-12-1176");
         Vehicle vehicle2 = new Vehicle("blue", "toyota", "MH-12-1276");
         Vehicle vehicle3 = new Vehicle("red", "BMW", "MH-12-1376");
