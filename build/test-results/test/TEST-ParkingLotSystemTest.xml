@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="ParkingLotSystemTest" tests="31" skipped="0" failures="0" errors="0" timestamp="2020-05-28T13:29:15" hostname="DESKTOP-0I0IS0O" time="0.314">
   <properties/>
   <testcase name="givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot" classname="ParkingLotSystemTest" time="0.032"/>
@@ -32,6 +33,41 @@
   <testcase name="givenParkingLot_WhenTimeIsSet_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
   <testcase name="givenParkingLot_WhenParkingFull_ThenAttenderShouldThrowException" classname="ParkingLotSystemTest" time="0.001"/>
   <testcase name="givenParkingLot_WhenAttenderNotAvailable_ThenThrowException" classname="ParkingLotSystemTest" time="0.001"/>
+=======
+<testsuite name="ParkingLotSystemTest" tests="31" skipped="0" failures="0" errors="0" timestamp="2020-05-28T12:43:55" hostname="DESKTOP-0I0IS0O" time="0.105">
+  <properties/>
+  <testcase name="givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot" classname="ParkingLotSystemTest" time="0.039"/>
+  <testcase name="givenParkingLot_WhenSpaceAvailableAfterFull_ThenShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenDriverTypeIsHandicap_ShouldReturnNearestLot" classname="ParkingLotSystemTest" time="0.004"/>
+  <testcase name="givenParkingLotSystem_WhenVehiclePark_ThenShouldParkVehicleEvenly" classname="ParkingLotSystemTest" time="0.003"/>
+  <testcase name="givenParkingLot_WhenParkedVehicleIsUnParked_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_WhenFull_ThenShouldThrowException" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_WhenFull_ThenShouldInformOwner" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenVehicleIsNotParked_ThenReturnException" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBMWCar" classname="ParkingLotSystemTest" time="0.005"/>
+  <testcase name="givenParkingLot_CheckVehicleIsNotPresent_ThenShouldThrowException" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenUnParkedVehicleWhichIsNotParked_ThenReturnFalse" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLotSystem_WhenLotsAdded_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLotSystem_WhenVehicleParked_ThenShouldReturnLocationOfWhiteCar" classname="ParkingLotSystemTest" time="0.004"/>
+  <testcase name="givenParkingSlotSystem_WhenParkingCapacitySet_ShouldReturnCapacity" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenVehicleIsParked_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLotSystem_WhenAddLot_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.002"/>
+  <testcase name="givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBlueToyotoCar" classname="ParkingLotSystemTest" time="0.003"/>
+  <testcase name="givenParkingLotSystem_WhenEvenlyDistrubuated_ThenUParkVehicle" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLotIsFull_WhenVehicleIsParked_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_ShouldReturnAttendant" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLotSystem_WhenCarColourIsBle_ThenReturnLot" classname="ParkingLotSystemTest" time="0.023"/>
+  <testcase name="givenParkingLot_WhenVehicleParkOnLotPosition_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLotSlot_WhenCarCome_ThenShouldAttenderParkCar" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenDriver_WhenHandicap_ThenShouldParkVehicleAtNearestPlace" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLotCapacity2_ShouldBeAbleToPark2Vehicles_ThenShouldInformOwner" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenHavingSpace_ThenShouldInformAirportSecurity" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenLargeVehicleParked_ThenShouldReturnTrue" classname="ParkingLotSystemTest" time="0.002"/>
+  <testcase name="givenParkingLot_WhenFull_ThenShouldInformAirportSecurity" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenTimeIsSet_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenParkingFull_ThenAttenderShouldThrowException" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenAttenderNotAvailable_ThenThrowException" classname="ParkingLotSystemTest" time="0.0"/>
+>>>>>>> Uc14-LocateBmwCar
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[com.parkinglotsystem.exception.ParkingLotSystemException: PARKING_IS_FULL
 	at com.parkinglotsystem.ParkingLot.getParkingSlot(ParkingLot.java:95)
