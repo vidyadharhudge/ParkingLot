@@ -566,8 +566,6 @@ public class ParkingLotSystemTest {
         result.add(2);
         Assert.assertEquals(result, expectedList.get(0));
     }
-
-
 }
 
 
