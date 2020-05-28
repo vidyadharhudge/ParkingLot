@@ -158,4 +158,14 @@ public class ParkingLot {
         return list;
 
     }
+    public List<Integer> findByModelName(String modelName) {
+        List<Integer>list=new ArrayList<>();
+        list=this.vehicles.stream()
+                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle()!=null)
+                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle().getModelName().equals(modelName))
+                .map(parkingTimeSlot -> parkingTimeSlot.getSlot())
+                .collect(Collectors.toList());
+        return list;
+
+    }
 }

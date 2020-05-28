@@ -60,4 +60,10 @@ public class ParkingLotSystem {
         }
         return arrayList;
     }
+    public List<List<Integer>> findVehicleByModelName(String modelName) {
+        List<List<Integer>>vehicleList=this.parkingLotList.stream()
+                .map(parkingLot -> parkingLot.findByModelName(modelName))
+                .collect(Collectors.toList());
+        return vehicleList;
+    }
 }
