@@ -521,18 +521,17 @@ public class ParkingLotSystemTest {
             Vehicle vehicle4 = new Vehicle("white", "toyota", "MH-12-1476");
             Vehicle vehicle5 = new Vehicle("grey", "toyota", "MH-12-1576");
 
-            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
-            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle2, "XYZ");
-            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
-            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle4, "PQR");
-            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5, "ABC");
+            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
+            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle2, "XYZ");
+            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
+            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle4, "PQR");
+            parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5, "ABC");
             List<List<String>> expectedCar = parkingLotSystem.findByModelAndColour("blue", "toyota");
             List result = new ArrayList();
-            result.add("XYZ0MH-12-1276");
+            result.add("XYZ1MH-12-1276");
             Assert.assertEquals(result, expectedCar.get(0));
         }
-
-    }
+}
 
 
 

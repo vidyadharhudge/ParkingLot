@@ -77,7 +77,7 @@ public class ParkingLot {
         vehicleSlotMap.put(slot, vehicle);
     }
 
-    public int initializeParkingSlot() {//
+    public int initializeParkingSlot() {
         IntStream.range(0, this.parkingLotCapacity).forEach(slots -> this.vehicles.add(new ParkingTimeSlot(slots)));
         return vehicles.size();
     }
@@ -97,7 +97,7 @@ public class ParkingLot {
 
     public ParkingLotAttender getParkingLotAttendant(ParkingLotAttender attendant) {
         ParkingOwner parkingOwner = (ParkingOwner) parkingLotHandlerList.get(0);
-        parkVehicle(parkingOwner.getParkingSlot(), (Vehicle) attendant.getVehicle());
+        parkVehicle(parkingOwner.getParkingSlot(), attendant.getVehicle());
         return attendant;
     }
 
@@ -154,6 +154,17 @@ public class ParkingLot {
                 .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle().getModelName().equals(modelName))
                 .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle().getColour().equals(colour))
                 .map(parkingTimeSlot -> (parkingTimeSlot.getAttendantName())+""+(parkingTimeSlot.getSlot())+""+(parkingTimeSlot.vehicle.getNumberPlate()))
+                .collect(Collectors.toList());
+        return list;
+
+    }
+
+    public List<Integer> findByModelName(String modelName) {
+        List<Integer>list=new ArrayList<>();
+        list=this.vehicles.stream()
+                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle()!=null)
+                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle().getModelName().equals(modelName))
+                .map(parkingTimeSlot -> parkingTimeSlot.getSlot())
                 .collect(Collectors.toList());
         return list;
 
