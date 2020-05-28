@@ -5,6 +5,7 @@ import com.parkinglotsystem.observer.ParkingLotHandler;
 import com.parkinglotsystem.observer.ParkingOwner;
 import com.parkinglotsystem.observer.Vehicle;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -170,14 +171,17 @@ public class ParkingLot {
 
     }
 
-    public List<Integer> findByModelName(String modelName) {
-        List<Integer>list=new ArrayList<>();
-        list=this.vehicles.stream()
-                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle()!=null)
-                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle().getModelName().equals(modelName))
-                .map(parkingTimeSlot -> parkingTimeSlot.getSlot())
+    public List<String>findParkedVehicleLast30Min(){
+
+        List<String> vehicleList = new ArrayList<>();
+        vehicleList = this.vehicles.stream()
+                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle() != null)
+                .filter(parkingTimeSlot -> parkingTimeSlot.getTime().getMinute()- LocalDateTime.now().getMinute()<=30)
+                .map(parkingTimeSlot -> (parkingTimeSlot.getAttendantName()) + "" + (parkingTimeSlot.getSlot()) + "" + (parkingTimeSlot.vehicle.getNumberPlate()))
                 .collect(Collectors.toList());
-        return list;
+        return vehicleList;
 
     }
+
+
 }

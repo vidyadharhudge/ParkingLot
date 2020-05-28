@@ -534,7 +534,12 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBMWCar() {
-<<<<<<< HEAD
+
+
+
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
 
 
         parkingLot.setParkingLotCapacity(10);
@@ -546,19 +551,10 @@ public class ParkingLotSystemTest {
         parkingLot.initializeParkingSlot();
         parkingLotSystem.addLots(parkingLot);
 
-=======
-        parkingLot.setParkingLotCapacity(10);
-        parkingLot.initializeParkingSlot();
-        parkingLotSystem.addLots(parkingLot);
->>>>>>> Uc14-LocateBmwCar
         ParkingLot parkingLot1 = new ParkingLot();
         parkingLot1.setParkingLotCapacity(10);
         parkingLot1.initializeParkingSlot();
         parkingLotSystem.addLots(parkingLot1);
-<<<<<<< HEAD
-
-=======
->>>>>>> Uc14-LocateBmwCar
         ParkingLot parkingLot2 = new ParkingLot();
         parkingLot2.setParkingLotCapacity(10);
         parkingLot2.initializeParkingSlot();
@@ -568,10 +564,7 @@ public class ParkingLotSystemTest {
         Vehicle vehicle3 = new Vehicle("red", "BMW", "MH-12-1376");
         Vehicle vehicle4 = new Vehicle("white", "toyota", "MH-12-1476");
         Vehicle vehicle5 = new Vehicle("grey", "toyota", "MH-12-1576");
-<<<<<<< HEAD
 
-=======
->>>>>>> Uc14-LocateBmwCar
         parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
         parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle2, "XYZ");
         parkingLot.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
