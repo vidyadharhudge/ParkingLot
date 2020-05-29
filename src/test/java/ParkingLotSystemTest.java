@@ -650,6 +650,39 @@ public class ParkingLotSystemTest {
         expectedResult.add("BMW MH-12-1876");
         Assert.assertEquals(expectedResult, vehicleList);
     }
+
+
+    @Test
+    public void givenParkingLotSystem_ShouldReturnParkdVehicleDetails() {
+        parkingLot.setParkingLotCapacity(10);
+        parkingLot.initializeParkingSlot();
+        parkingLotSystem.addLots(parkingLot);
+
+        Vehicle vehicle1 = new Vehicle("black", "BMW", "MH-12-1176");
+        Vehicle vehicle2 = new Vehicle("blue", "toyota", "MH-12-1276");
+        Vehicle vehicle3 = new Vehicle("grey", "BMW", "MH-12-1376");
+        Vehicle vehicle4 = new Vehicle("red", "BMW", "MH-12-1476");
+        Vehicle vehicle5 = new Vehicle("white", "toyota", "MH-12-1576");
+        Vehicle vehicle6 = new Vehicle("blue", "BMW", "MH-12-1676");
+        Vehicle vehicle7 = new Vehicle("black", "toyota", "MH-12-1776");
+        Vehicle vehicle8 = new Vehicle("red", "BMW", "MH-12-1876");
+        Vehicle vehicle9 = new Vehicle("white", "toyota", "MH-12-1976");
+        try {
+            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
+            parkingLotSystem.parkVehicle(VehicleType.SMALL_VEHICLE, vehicle2, "XYZ");
+            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
+            parkingLotSystem.parkVehicle(DriverType.HANDICAP_DRIVER, vehicle4, "XYZ");
+            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5, "ABC");
+            parkingLotSystem.parkVehicle(DriverType.HANDICAP_DRIVER, vehicle6, "XYZ");
+            parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle7, "PQR");
+            parkingLotSystem.parkVehicle(VehicleType.SMALL_VEHICLE, vehicle8, "XYZ");
+            parkingLotSystem.parkVehicle(VehicleType.SMALL_VEHICLE, vehicle9, "XYZ");
+            List<List<String>> vehicleList = parkingLotSystem.getDetailsOfParkedVehicle();
+            Assert.assertEquals(9, vehicleList.size());
+        } catch (ParkingLotSystemException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
