@@ -1,43 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ParkingLotSystemTest" tests="32" skipped="0" failures="0" errors="0" timestamp="2020-05-28T14:16:43" hostname="DESKTOP-0I0IS0O" time="0.117">
+<testsuite name="ParkingLotSystemTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-05-29T08:59:50" hostname="DESKTOP-0I0IS0O" time="0.059">
   <properties/>
-  <testcase name="givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot" classname="ParkingLotSystemTest" time="0.04"/>
-  <testcase name="givenParkingLot_WhenSpaceAvailableAfterFull_ThenShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenDriverTypeIsHandicap_ShouldReturnNearestLot" classname="ParkingLotSystemTest" time="0.005"/>
-  <testcase name="givenParkingLotSystem_WhenVehiclePark_ThenShouldParkVehicleEvenly" classname="ParkingLotSystemTest" time="0.002"/>
-  <testcase name="givenParkingLot_WhenParkedVehicleIsUnParked_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.004"/>
-  <testcase name="givenParkingLot_WhenFull_ThenShouldThrowException" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLot_WhenFull_ThenShouldInformOwner" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLot_WhenVehicleIsNotParked_ThenReturnException" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBMWCar" classname="ParkingLotSystemTest" time="0.006"/>
-  <testcase name="givenParkingLot_CheckVehicleIsNotPresent_ThenShouldThrowException" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_WhenUnParkedVehicleWhichIsNotParked_ThenReturnFalse" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLotSystem_WhenLotsAdded_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLotSystem_WhenVehicleParked_ThenShouldReturnLocationOfWhiteCar" classname="ParkingLotSystemTest" time="0.004"/>
-  <testcase name="givenParkingSlotSystem_WhenParkingCapacitySet_ShouldReturnCapacity" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_WhenVehicleIsParked_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLotSystem_WhenAddLot_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBlueToyotoCar" classname="ParkingLotSystemTest" time="0.002"/>
-  <testcase name="givenParkingLotSystem_WhenEvenlyDistrubuated_ThenUParkVehicle" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLotIsFull_WhenVehicleIsParked_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_ShouldReturnAttendant" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLotSystem_WhenCarColourIsBle_ThenReturnLot" classname="ParkingLotSystemTest" time="0.022"/>
-  <testcase name="givenParkingLot_WhenVehicleParkOnLotPosition_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLotSystem_ShouldReturnParkedVechicleFromLast30Min" classname="ParkingLotSystemTest" time="0.002"/>
-  <testcase name="givenParkingLotSlot_WhenCarCome_ThenShouldAttenderParkCar" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenDriver_WhenHandicap_ThenShouldParkVehicleAtNearestPlace" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLotCapacity2_ShouldBeAbleToPark2Vehicles_ThenShouldInformOwner" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLot_WhenHavingSpace_ThenShouldInformAirportSecurity" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_WhenLargeVehicleParked_ThenShouldReturnTrue" classname="ParkingLotSystemTest" time="0.003"/>
-  <testcase name="givenParkingLot_WhenFull_ThenShouldInformAirportSecurity" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLot_WhenTimeIsSet_ThenReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_WhenParkingFull_ThenAttenderShouldThrowException" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_WhenAttenderNotAvailable_ThenThrowException" classname="ParkingLotSystemTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[com.parkinglotsystem.exception.ParkingLotSystemException: PARKING_IS_FULL
-	at com.parkinglotsystem.ParkingLot.getParkingSlot(ParkingLot.java:96)
-	at com.parkinglotsystem.ParkingLot.parkVehicle(ParkingLot.java:47)
-	at ParkingLotSystemTest.givenParkingLotSystem_WhenCarColourIsBle_ThenReturnLot(ParkingLotSystemTest.java:491)
+  <testcase name="givenParkingLotSystem_ShouldReturnLotNumberOfSmallAndHandicapDrivers" classname="ParkingLotSystemTest" time="0.059">
+    <failure message="java.lang.AssertionError: expected:&lt;[toyota MH-12-1276, BMW MH-12-1676, BMW MH-12-1476, BMW MH-12-1876]&gt; but was:&lt;[[toyota MH-12-1976], [toyota MH-12-1976], [toyota MH-12-1976], [toyota MH-12-1976]]&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;[toyota MH-12-1276, BMW MH-12-1676, BMW MH-12-1476, BMW MH-12-1876]&gt; but was:&lt;[[toyota MH-12-1976], [toyota MH-12-1976], [toyota MH-12-1976], [toyota MH-12-1976]]&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at ParkingLotSystemTest.givenParkingLotSystem_ShouldReturnLotNumberOfSmallAndHandicapDrivers(ParkingLotSystemTest.java:651)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -86,5 +56,8 @@
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-]]></system-err>
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>

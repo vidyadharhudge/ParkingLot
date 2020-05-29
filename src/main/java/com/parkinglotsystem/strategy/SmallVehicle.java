@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class NormalDriver implements ParkingStrategy {
+public class SmallVehicle implements ParkingStrategy {
     @Override
     public ParkingLot getParkingLot(List<ParkingLot> parkingLotList) {
         List<ParkingLot>lotList=new ArrayList<>(parkingLotList);

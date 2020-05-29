@@ -4,6 +4,8 @@ import com.parkinglotsystem.exception.ParkingLotSystemException;
 import com.parkinglotsystem.observer.ParkingLotHandler;
 import com.parkinglotsystem.observer.ParkingOwner;
 import com.parkinglotsystem.observer.Vehicle;
+import com.parkinglotsystem.strategy.DriverType;
+import com.parkinglotsystem.strategy.VehicleType;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,13 +23,13 @@ public class ParkingLot {
     Map<Integer, Vehicle> vehicleSlotMap = new HashMap<>();
 
     public ParkingLot() {
-        parkingLotHandlerList = new ArrayList();
-        this.vehicles = new ArrayList();
+        parkingLotHandlerList = new ArrayList<>();
+        this.vehicles = new ArrayList<>();
     }
 
     public ParkingLot(int parkingLotCapacity) {
         this.parkingLotCapacity = parkingLotCapacity;
-        parkingLotHandlerList = new ArrayList();
+        parkingLotHandlerList = new ArrayList<>();
         this.vehicles = new ArrayList();
     }
 
@@ -70,7 +72,7 @@ public class ParkingLot {
 
 
     public void parkVehicle(int slot, Vehicle vehicle) {
-        if (this.parkingLotCapacity == this.vehicleSlotMap.size()) {
+        if (this.vehicleSlotMap.size()==this.parkingLotCapacity) {
             for (ParkingLotHandler parkingOwner : parkingLotHandlerList)
                 parkingOwner.parkingIsFull();
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
@@ -154,7 +156,8 @@ public class ParkingLot {
                 .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle() != null)
                 .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle().getModelName().equals(modelName))
                 .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle().getColour().equals(colour))
-                .map(parkingTimeSlot -> (parkingTimeSlot.getAttendantName()) + " " + (parkingTimeSlot.getSlot()) + " " + (parkingTimeSlot.vehicle.getNumberPlate()))
+                .map(parkingTimeSlot -> (parkingTimeSlot.getAttendantName()) + " " + (parkingTimeSlot.getSlot()) + " " +
+                        (parkingTimeSlot.vehicle.getNumberPlate()))
                 .collect(Collectors.toList());
         return list;
 
@@ -183,5 +186,15 @@ public class ParkingLot {
 
     }
 
-
+    public List<String> getVehicleDetailByLotNumber() {
+        List<String> vehicleList = new ArrayList();
+        vehicleList = this.vehicles.stream()
+                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle() != null)
+                .filter((parkingTimeSlot -> (parkingTimeSlot.getDriverType() == DriverType.HANDICAP_DRIVER) ||
+                        (parkingTimeSlot.getDriverType() == VehicleType.SMALL_VEHICLE)))
+                .map (parkingTimeSlot -> (parkingTimeSlot.getVehicle().getModelName()) + " " +
+                        (parkingTimeSlot.getVehicle().getNumberPlate()))
+                .collect(Collectors.toList());
+        return vehicleList;
+    }
 }

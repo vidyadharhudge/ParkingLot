@@ -12,6 +12,10 @@ public class ParkingTimeSlot {
     protected  LocalDateTime time;
     protected Vehicle vehicle;
 
+    public Enum getDriverType(){
+        return driverType;
+    }
+
     public ParkingTimeSlot(Enum driverType, Vehicle vehicle,String attendantName) {
     this.vehicle=vehicle;
     this.time= LocalDateTime.now();

@@ -23,13 +23,13 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">32</div>
+<div class="counter">1</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">1</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.099s</div>
+<div class="counter">0.059s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">0%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,191 +61,24 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Tests</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Standard error</a>
+<a href="#tab1">Tests</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
-<h2>Tests</h2>
-<table>
-<thead>
-<tr>
-<th>Test</th>
-<th>Duration</th>
-<th>Result</th>
-</tr>
-</thead>
-<tr>
-<td class="success">givenDriverTypeIsHandicap_ShouldReturnNearestLot</td>
-<td class="success">0.005s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenDriver_WhenHandicap_ThenShouldParkVehicleAtNearestPlace</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotCapacity2_ShouldBeAbleToPark2Vehicles_ThenShouldInformOwner</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotIsFull_WhenVehicleIsParked_ThenReturnTrue</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSlot_WhenCarCome_ThenShouldAttenderParkCar</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_ShouldReturnParkedVechicleFromLast30Min</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenAddLot_ThenReturnTrue</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenCarColourIsBle_ThenReturnLot</td>
-<td class="success">0.022s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenEvenlyDistrubuated_ThenUParkVehicle</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenLotsAdded_ThenReturnTrue</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot</td>
-<td class="success">0.040s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenVehiclePark_ThenShouldParkVehicleEvenly</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBMWCar</td>
-<td class="success">0.006s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenVehicleParked_ThenShouldLocateBlueToyotoCar</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenVehicleParked_ThenShouldReturnLocationOfWhiteCar</td>
-<td class="success">0.004s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_CheckVehicleIsNotPresent_ThenShouldThrowException</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_ShouldReturnAttendant</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenAttenderNotAvailable_ThenThrowException</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenFull_ThenShouldInformAirportSecurity</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenFull_ThenShouldInformOwner</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenFull_ThenShouldThrowException</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenHavingSpace_ThenShouldInformAirportSecurity</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenLargeVehicleParked_ThenShouldReturnTrue</td>
-<td class="success">0.003s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenParkedVehicleIsUnParked_ThenReturnTrue</td>
-<td class="success">0.004s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenParkingFull_ThenAttenderShouldThrowException</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenSpaceAvailableAfterFull_ThenShouldReturnTrue</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenTimeIsSet_ThenReturnTrue</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenUnParkedVehicleWhichIsNotParked_ThenReturnFalse</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenVehicleIsNotParked_ThenReturnException</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenVehicleIsParked_ThenReturnTrue</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLot_WhenVehicleParkOnLotPosition_ThenReturnTrue</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingSlotSystem_WhenParkingCapacitySet_ShouldReturnCapacity</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-</table>
-</div>
-<div id="tab1" class="tab">
-<h2>Standard error</h2>
+<h2>Failed tests</h2>
+<div class="test">
+<a name="givenParkingLotSystem_ShouldReturnLotNumberOfSmallAndHandicapDrivers"></a>
+<h3 class="failures">givenParkingLotSystem_ShouldReturnLotNumberOfSmallAndHandicapDrivers</h3>
 <span class="code">
-<pre>com.parkinglotsystem.exception.ParkingLotSystemException: PARKING_IS_FULL
-	at com.parkinglotsystem.ParkingLot.getParkingSlot(ParkingLot.java:96)
-	at com.parkinglotsystem.ParkingLot.parkVehicle(ParkingLot.java:47)
-	at ParkingLotSystemTest.givenParkingLotSystem_WhenCarColourIsBle_ThenReturnLot(ParkingLotSystemTest.java:491)
+<pre>java.lang.AssertionError: expected:&lt;[toyota MH-12-1276, BMW MH-12-1676, BMW MH-12-1476, BMW MH-12-1876]&gt; but was:&lt;[[toyota MH-12-1976], [toyota MH-12-1976], [toyota MH-12-1976], [toyota MH-12-1976]]&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at ParkingLotSystemTest.givenParkingLotSystem_ShouldReturnLotNumberOfSmallAndHandicapDrivers(ParkingLotSystemTest.java:651)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -298,6 +131,24 @@
 </span>
 </div>
 </div>
+<div id="tab1" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="failures">givenParkingLotSystem_ShouldReturnLotNumberOfSmallAndHandicapDrivers</td>
+<td class="failures">0.059s</td>
+<td class="failures">failed</td>
+</tr>
+</table>
+</div>
+</div>
 <div id="footer">
 <p>
 <div>
@@ -305,7 +156,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.2.1</a> at May 28, 2020, 7:16:43 AM</p>
+<a href="http://www.gradle.org">Gradle 5.2.1</a> at May 29, 2020, 1:59:50 AM</p>
 </div>
 </div>
 </body>

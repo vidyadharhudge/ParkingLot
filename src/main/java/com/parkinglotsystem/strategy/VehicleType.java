@@ -1,5 +1,6 @@
 package com.parkinglotsystem.strategy;
 
 public enum  VehicleType {
-    LARGE_VEHICLE;
+    LARGE_VEHICLE,SMALL_VEHICLE;
+
 }
