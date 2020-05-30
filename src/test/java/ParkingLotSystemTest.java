@@ -434,12 +434,14 @@ public class ParkingLotSystemTest {
         Vehicle vehicle3 = new Vehicle();
         Vehicle vehicle4 = new Vehicle();
         Vehicle vehicle5 = new Vehicle();
+        Vehicle vehicle6 = new Vehicle();
 
         parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
         parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle2, "PQR");
         parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
         parkingLotSystem.parkVehicle(VehicleType.LARGE_VEHICLE, vehicle4, "XYZ");
         parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5, "PQR");
+        parkingLotSystem.parkVehicle(VehicleType.SMALL_VEHICLE,vehicle6,"MNO");
         boolean isVehiclePark = parkingLotSystem.isPark(vehicle4);
         Assert.assertTrue(isVehiclePark);
     }
@@ -601,59 +603,7 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenParkingLotSystem_ShouldReturnLotNumberOfSmallAndHandicapDrivers() {
-        ParkingLot parkingLot1 = new ParkingLot();
-        parkingLot1.setParkingLotCapacity(10);
-        parkingLot1.initializeParkingSlot();
-        parkingLotSystem.addLots(parkingLot1);
-
-        ParkingLot parkingLot2 = new ParkingLot();
-        parkingLot2.setParkingLotCapacity(10);
-        parkingLot2.initializeParkingSlot();
-        parkingLotSystem.addLots(parkingLot2);
-
-        ParkingLot parkingLot3 = new ParkingLot();
-        parkingLot3.setParkingLotCapacity(10);
-        parkingLot3.initializeParkingSlot();
-        parkingLotSystem.addLots(parkingLot3);
-
-        ParkingLot parkingLot4 = new ParkingLot();
-        parkingLot4.setParkingLotCapacity(10);
-        parkingLot4.initializeParkingSlot();
-        parkingLotSystem.addLots(parkingLot4);
-
-        Vehicle vehicle1 = new Vehicle("black", "BMW", "MH-12-1176");
-        Vehicle vehicle2 = new Vehicle("blue", "toyota", "MH-12-1276");
-        Vehicle vehicle3 = new Vehicle("grey", "BMW", "MH-12-1376");
-        Vehicle vehicle4 = new Vehicle("red", "BMW", "MH-12-1476");
-        Vehicle vehicle5 = new Vehicle("white", "toyota", "MH-12-1576");
-        Vehicle vehicle6 = new Vehicle("blue", "BMW", "MH-12-1676");
-        Vehicle vehicle7 = new Vehicle("black", "toyota", "MH-12-1776");
-        Vehicle vehicle8 = new Vehicle("red", "BMW", "MH-12-1876");
-        Vehicle vehicle9 = new Vehicle("white", "toyota", "MH-12-1976");
-
-        parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle1, "ABC");
-        parkingLotSystem.parkVehicle(VehicleType.SMALL_VEHICLE, vehicle2, "XYZ");
-        parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle3, "ABC");
-        parkingLotSystem.parkVehicle(DriverType.HANDICAP_DRIVER, vehicle4, "XYZ");
-        parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle5, "ABC");
-        parkingLotSystem.parkVehicle(DriverType.HANDICAP_DRIVER, vehicle6, "XYZ");
-        parkingLotSystem.parkVehicle(DriverType.NORMAL_DRIVER, vehicle7, "PQR");
-        parkingLotSystem.parkVehicle(VehicleType.SMALL_VEHICLE, vehicle8, "XYZ");
-        parkingLotSystem.parkVehicle(VehicleType.SMALL_VEHICLE, vehicle9, "XYZ");
-
-        List<List<String>> vehicleList = parkingLotSystem.findByLotNumber(parkingLot2, parkingLot4);
-        List expectedResult = new ArrayList();
-        expectedResult.add("toyota MH-12-1276");
-        expectedResult.add("BMW MH-12-1676");
-        expectedResult.add("BMW MH-12-1476");
-        expectedResult.add("BMW MH-12-1876");
-        Assert.assertEquals(expectedResult, vehicleList);
-    }
-
-
-    @Test
-    public void givenParkingLotSystem_ShouldReturnParkdVehicleDetails() {
+    public void givenParkingLotSystem_ShouldReturnParkedVehicleDetails() {
         parkingLot.setParkingLotCapacity(10);
         parkingLot.initializeParkingSlot();
         parkingLotSystem.addLots(parkingLot);

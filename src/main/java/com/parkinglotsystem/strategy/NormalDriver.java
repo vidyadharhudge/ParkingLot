@@ -1,12 +1,19 @@
+/**************************************************************************************************************
+ * @Purpose:Providing Normal Driver Which Implementing ParkingStrategy For Occupying Space In lot
+ * @Author:vidyadhar
+ * @Date-27/05/20
+ * *************************************************************************************************************/
 package com.parkinglotsystem.strategy;
-
 import com.parkinglotsystem.ParkingLot;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * @Purpose:-Which Occupy Space In Reversed Order
+ * @return:-Returns Position Of Vehicle
+ */
 public class NormalDriver implements ParkingStrategy {
     @Override
     public ParkingLot getParkingLot(List<ParkingLot> parkingLotList) {
