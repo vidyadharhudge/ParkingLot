@@ -17,10 +17,6 @@ public class AirportSecurity implements ParkingLotHandler {
     }
 
     /**
-     * purpose;-To Change Parking Capacity To False If Parking Is Empty
-     */
-
-    /**
      * purpose;-To If Parking Capacity Full Then Return Capacity
      * @Return:-Parking Lot Capacity
      */

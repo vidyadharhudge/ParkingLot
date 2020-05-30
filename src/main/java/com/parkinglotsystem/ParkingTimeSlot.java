@@ -6,12 +6,11 @@
 package com.parkinglotsystem;
 
 import com.parkinglotsystem.observer.Vehicle;
-import com.parkinglotsystem.strategy.VehicleType;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class ParkingTimeSlot {
-    public VehicleType vehicleSize;
     private  int slot;
     protected   String attendantName;
     public Enum driverType;

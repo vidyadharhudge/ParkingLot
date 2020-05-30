@@ -1,12 +1,12 @@
 import com.parkinglotsystem.*;
+import com.parkinglotsystem.enums.DriverType;
+import com.parkinglotsystem.enums.VehicleType;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
 import com.parkinglotsystem.observer.AirportSecurity;
 import com.parkinglotsystem.observer.ParkingOwner;
 import com.parkinglotsystem.observer.Vehicle;
-import com.parkinglotsystem.strategy.DriverType;
 import com.parkinglotsystem.strategy.ParkingFactory;
 import com.parkinglotsystem.strategy.ParkingStrategy;
-import com.parkinglotsystem.strategy.VehicleType;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

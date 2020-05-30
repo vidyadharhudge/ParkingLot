@@ -4,6 +4,7 @@
  * @Date-22/05/20
  * *************************************************************************************************************/
 package com.parkinglotsystem.observer;
+
 public class ParkingOwner implements ParkingLotHandler {
 
     private boolean parkingLotCapacity;
@@ -16,10 +17,6 @@ public class ParkingOwner implements ParkingLotHandler {
     public void parkingIsFull() {
         this.parkingLotCapacity=true;
     }
-
-    /**
-     * purpose;-To Change Parking Capacity To False If Parking Is Empty
-     */
 
     /**
      * purpose;-To If Parking Capacity fullThen Return Capacity

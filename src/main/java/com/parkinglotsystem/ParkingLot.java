@@ -1,5 +1,5 @@
 /**************************************************************************************************************
- * @Purpose:-To Park And Unpark Vehicle On Diffrent Slot
+ * @Purpose:-To Park And Unpark Vehicle On Different Slot
  * @Author:vidyadhar
  * @Date-22/05/20
  * *************************************************************************************************************/
@@ -8,8 +8,6 @@ import com.parkinglotsystem.exception.ParkingLotSystemException;
 import com.parkinglotsystem.observer.ParkingLotHandler;
 import com.parkinglotsystem.observer.ParkingOwner;
 import com.parkinglotsystem.observer.Vehicle;
-import com.parkinglotsystem.strategy.DriverType;
-import com.parkinglotsystem.strategy.VehicleType;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,9 +53,7 @@ public class ParkingLot {
     }
 
     /**
-     * +
      * purpose:-parking full or not and set the slot
-     *
      * @param driverType    which type of driver we needed
      * @param vehicle       which type of vehicle
      * @param attendantName providing attendant name
@@ -73,9 +69,7 @@ public class ParkingLot {
     }
 
     /**
-     * +
      * purpose;-vehicle prsent or not
-     *
      * @param vehicle fo attendance
      * @return present or not
      */
@@ -87,9 +81,7 @@ public class ParkingLot {
     }
 
     /**
-     * +
      * purpose;-Unparking Vehicle And Checking Parking Is Empty Or Not
-     *
      * @param vehicle checking for presenty
      * @return vehicle present or not
      */
@@ -104,9 +96,7 @@ public class ParkingLot {
 
 
     /**
-     * +
      * purpose:-vehicle park in parking lot
-     *
      * @param slot    passing slot in map
      * @param vehicle passing vehicle in map
      */
@@ -120,9 +110,7 @@ public class ParkingLot {
     }
 
     /**
-     * +
      * purpose;-Intializing parking Lot Capacity
-     *
      * @return size
      */
     public int initializeParkingSlot() {
@@ -131,9 +119,7 @@ public class ParkingLot {
     }
 
     /**
-     * +
      * purpose;-getting vehicle count
-     *
      * @return no of vehicle
      */
     public int getVehicleCount() {
@@ -141,9 +127,7 @@ public class ParkingLot {
     }
 
     /**
-     * +
      * purpose;-set the slot as per size
-     *
      * @return slot
      */
     public int getParkingSlot() {
@@ -156,9 +140,7 @@ public class ParkingLot {
     }
 
     /**
-     * +
      * purpose;-getting slot for vehicle And Return Attendant
-     *
      * @param attendant information of vehicle
      * @return attendant
      */
@@ -169,9 +151,7 @@ public class ParkingLot {
     }
 
     /**
-     * +
      * purpose;-attendant present or not
-     *
      * @param attendant checking for vehicle
      * @return attendant
      */
@@ -183,7 +163,6 @@ public class ParkingLot {
 
     /**
      * purpose;-To Find Slot In Which Vehicle Is Parked
-     *
      * @param vehicle
      * @return slot on which vehicle is parked
      */
@@ -196,7 +175,6 @@ public class ParkingLot {
 
     /**
      * purpose;-intialize slot to null
-     *
      * @return slot is full or not
      */
     public ArrayList getSlot() {
@@ -213,7 +191,6 @@ public class ParkingLot {
 
     /**
      * purpose;-on which time vehicle is parked
-     *
      * @param vehicle To Find On Which Time Is Parked
      * @return time
      */
@@ -228,7 +205,6 @@ public class ParkingLot {
 
     /**
      * purpose;-To Find Vehicle Based On Colour
-     *
      * @param colour vehicle to find
      * @return list of vehicle with same colour
      */
@@ -244,7 +220,7 @@ public class ParkingLot {
 
     /**
      * purpose;-find vehicle by model and colour
-     * @param colour    vehicle to find
+     * @param colour vehicle to find
      * @param modelName vehicle to find
      * @return list of vehicle with same colour and model
      */
@@ -280,7 +256,6 @@ public class ParkingLot {
 
     /**
      * purpose;-finding vehicle which parked in last 30 min
-     *
      * @return list of vehicle
      */
     public List<String> findParkedVehicleLast30Min() {

@@ -4,8 +4,8 @@
  * @Date-29/05/20
  * *************************************************************************************************************/
 package com.parkinglotsystem;
-import com.parkinglotsystem.observer.Vehicle;
 
+import com.parkinglotsystem.observer.Vehicle;
 
 public class ParkingLotAttender
 {
