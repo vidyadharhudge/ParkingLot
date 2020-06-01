@@ -113,6 +113,15 @@ public class ParkingLotSystem {
         return vehicleList;
     }
 
+    public List<List<String>>findByLotNumber(ParkingLot parkingLot2,ParkingLot parkingLot4){
+        List<List<String>>vehicleList=this.parkingLotList.stream()
+                .map(parkingLot -> parkingLot2.getVehicleDetailByLotNumber())
+                .map(parkingLot->parkingLot4.getVehicleDetailByLotNumber())
+                .collect(Collectors.toList());
+        return vehicleList;
+    }
+
+
     /**
      * purpose;-getting detail of vehicle
      * @return vehicle list

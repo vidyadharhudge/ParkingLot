@@ -87,4 +87,8 @@ public class ParkingTimeSlot {
         ParkingTimeSlot that=(ParkingTimeSlot)obj;
         return Objects.equals(vehicle,that.vehicle);
     }
+
+    public Enum getDriverType() {
+        return driverType;
+    }
 }

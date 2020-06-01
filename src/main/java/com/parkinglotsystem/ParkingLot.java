@@ -4,6 +4,8 @@
  * @Date-22/05/20
  * *************************************************************************************************************/
 package com.parkinglotsystem;
+import com.parkinglotsystem.enums.DriverType;
+import com.parkinglotsystem.enums.VehicleType;
 import com.parkinglotsystem.exception.ParkingLotSystemException;
 import com.parkinglotsystem.observer.ParkingLotHandler;
 import com.parkinglotsystem.observer.ParkingOwner;
@@ -46,7 +48,7 @@ public class ParkingLot {
 
     /**
      * @param parkingOwner for Informing
-     * @purpose:-To inform Parking Full And Empty To Observer
+     * @purpose:-To inform Parking Full To Observer
      */
     public void registerHandler(ParkingLotHandler parkingOwner) {
         this.parkingLotHandlerList.add(parkingOwner);
@@ -54,18 +56,26 @@ public class ParkingLot {
 
     /**
      * purpose:-parking full or not and set the slot
-     * @param driverType    which type of driver we needed
-     * @param vehicle       which type of vehicle
+     * @param driverType  which type of driver we needed
+     * @param vehicle  which type of vehicle
      * @param attendantName providing attendant name
      */
     public void parkVehicle(Enum driverType, Vehicle vehicle, String attendantName) {
         ParkingTimeSlot parkingTimeSlot = new ParkingTimeSlot(driverType, vehicle, attendantName);
         if (isPark(vehicle))
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_IS_FULL, "PARKING_IS_FULL");
-        int slot = getParkingSlot();
+        int slot = getParkingSlot();//
         parkingTimeSlot.setSlot(slot);
         this.vehicles.set(slot, parkingTimeSlot);
         vehicleCount++;
+    }
+
+    /**
+     * purpose;-getting vehicle count
+     * @return no of vehicle
+     */
+    public int getVehicleCount() {
+        return vehicleCount;
     }
 
     /**
@@ -119,18 +129,10 @@ public class ParkingLot {
     }
 
     /**
-     * purpose;-getting vehicle count
-     * @return no of vehicle
-     */
-    public int getVehicleCount() {
-        return vehicleCount;
-    }
-
-    /**
      * purpose;-set the slot as per size
      * @return slot
      */
-    public int getParkingSlot() {
+    public int getParkingSlot() {//
         ArrayList<Integer> slotList = getSlot();
         for (int slot = 0; slot < slotList.size(); slot++) {
             if (slotList.get(0) == (slot))
@@ -267,6 +269,23 @@ public class ParkingLot {
                 .collect(Collectors.toList());
         return vehicleList;
 
+    }
+
+
+    /**+
+     * purpose;-get list of vehicle As Per Lot Number
+     * @return vehicle list with as per lot
+     */
+    public List<String> getVehicleDetailByLotNumber() {
+        List<String> vehicleList = new ArrayList();
+        vehicleList = this.vehicles.stream()
+                .filter(parkingTimeSlot -> parkingTimeSlot.getVehicle() != null)
+                .filter((parkingTimeSlot -> (parkingTimeSlot.getDriverType() == DriverType.HANDICAP_DRIVER) ||
+                        (parkingTimeSlot.getDriverType() == VehicleType.SMALL_VEHICLE)))
+                .map (parkingTimeSlot -> (parkingTimeSlot.getVehicle().getModelName()) + " " +
+                        (parkingTimeSlot.getVehicle().getNumberPlate()))
+                .collect(Collectors.toList());
+        return vehicleList;
     }
 
     /**
